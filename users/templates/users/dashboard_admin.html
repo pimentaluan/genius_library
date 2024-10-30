@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genius Library - Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        <nav>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+
+    <aside>
+        <ul>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="">Adicionar Usuário</a></li>
+            <li><a href="">Gerenciar Usuários</a></li>
+            <li><a href="">Adicionar Livro</a></li>
+            <li><a href="">Gerenciar Livros</a></li>
+            <li><a href="">Registrar Empréstimo</a></li>
+            <li><a href="">Relatórios</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <section class="summary-cards">
+            <div class="card">Total de Livros: {{ total_books }}</div>
+            <div class="card">Empréstimos Ativos: {{ active_loans }}</div>
+            <div class="card">Usuários Registrados: {{ total_users }}</div>
+        </section>
+
+        <section class="quick-actions">
+            <h2>Ações Rápidas</h2>
+            <button>Registrar Empréstimo</button>
+            <button>Devolução de Livro</button>
+            <button>Adicionar Novo Livro</button>
+            <button>Acessar Relatórios</button>
+        </section>
+
+        <section class="statistics">
+            <h2>Gráficos e Relatórios Visuais</h2>
+        </section>
+    </main>
+
+    <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>

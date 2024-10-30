@@ -12,12 +12,15 @@
         <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
         
         {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <p class="message {{ message.tags }}">{{ message }}</p>
-            {% endfor %}
-        </div>
+            <div class="messages">
+                {% for message in messages %}
+                    {% if forloop.last %}
+                        <p class="message {{ message.tags }}">{{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
         {% endif %}
+
 
         <form method="post">
             {% csrf_token %}
@@ -28,6 +31,7 @@
 
     <div class="div_background">
         <img src="{% static 'img/login_background.webp' %}" alt="Login Background">
+        <div class="overlay"></div>
     </div>
 </body>
 </html>

@@ -34,7 +34,3 @@ class LoginUserForm(forms.Form):
         widget=forms.PasswordInput(attrs={'placeholder': 'Digite sua senha'}),
         label="Senha"
     )
-    password_confirm = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirme sua senha'}),
-        label="Confirme a Senha"
-    )
