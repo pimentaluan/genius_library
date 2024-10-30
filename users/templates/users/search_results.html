@@ -36,36 +36,45 @@
             </ul>
         </aside>
     
-        <main>
-            <section class="summary-cards">
-                <div class="card">
-                    <p style="font-size: 2rem;">{{ total_books }}</p>
-                    <p>Total de Livros  <i class="fas fa-book" style="font-size: 1.5rem;"></i></p>
+        <main id="search-results">
+            {% if users %}
+            <section class="search-section" id="users-section">
+                <h2>Usuários Encontrados</h2>
+                <div class="result-card">
+                    {% for user in users %}
+                        <p class="result-item">{{ user.full_name }} - {{ user.email }}</p>
+                    {% endfor %}
                 </div>
-                <div class="card">
-                    <p style="font-size: 2rem;">{{ total_active_loans }}</p>
-                    <p>Empréstimos Ativos  <i class="fas fa-handshake" style="font-size: 1.5rem;"></i> 
-                    </p>
+            </section>
+            {% endif %}
+            
+            {% if livros %}
+            <section class="search-section" id="books-section">
+                <h2>Livros Encontrados</h2>
+                <div class="result-card">
+                    {% for livro in livros %}
+                        <p class="result-item">{{ livro.title }} - {{ livro.author }}</p>
+                    {% endfor %}
                 </div>
-                <div class="card">
-                    <p style="font-size: 2rem;">{{ total_users }}</p>
-                    <p>Usuários Registrados  <i class="fas fa-users" style="font-size: 1.5rem;"></i></p> 
+            </section>
+            {% endif %}
+            
+            {% if emprestimos %}
+            <section class="search-section" id="loans-section">
+                <h2>Empréstimos Encontrados</h2>
+                <div class="result-card">
+                    {% for emprestimo in emprestimos %}
+                        <div class="loan-item">
+                            <p><strong>Livro:</strong> {{ emprestimo.book.title }}</p>
+                            <p><strong>Usuário:</strong> {{ emprestimo.user.full_name }}</p>
+                            <p><strong>Data de Empréstimo:</strong> {{ emprestimo.start_date }}</p>
+                            <p><strong>Data de Devolução:</strong> {{ emprestimo.end_date }}</p>
+                        </div>
+                    {% endfor %}
                 </div>
-                
             </section>
-    
-            <section class="quick-actions">
-                <h2>Ações Rápidas</h2>
-                <button><i class="fas fa-handshake"></i> Registrar Empréstimo</button>
-                <button><i class="fas fa-undo"></i> Devolução de Livro</button>
-                <button><i class="fas fa-plus-circle"></i> Adicionar Novo Livro</button>
-                <button><i class="fas fa-chart-bar"></i> Acessar Relatórios</button>
-            </section>
-    
-            <section class="statistics">
-                <h2>Gráficos e Relatórios Visuais</h2>
-            </section>
-        </main>
+            {% endif %}
+        </main>        
     </section>
 
     <script src="{% static 'js/dashboard.js' %}"></script>

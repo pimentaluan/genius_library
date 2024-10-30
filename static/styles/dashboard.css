@@ -1,0 +1,259 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    color: #333;
+    flex-direction: column; /* Permite que o header empurre o conteúdo para baixo */
+}
+
+header {
+    background-color: #2A6DB8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 120px; /* Altura aumentada */
+}
+
+header .logo {
+    width: 100px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-form input[type="text"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    width: 500px;
+
+}
+
+.search-form button {
+    padding: 8px 12px;
+    background-color: #001825;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #001825;
+}
+
+.conteiner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+aside {
+    background-color: #001825;
+    color: white;
+    width: 200px;
+    padding: 20px;
+    position: relative;
+    height: 100vh;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+    margin: 20px 0;
+}
+
+aside ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+aside ul li a i {
+    margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+    font-size: 1.2em; /* Tamanho dos ícones */
+    color: #A9A9A9; /* Cor ligeiramente mais clara para o ícone */
+}
+
+aside ul li a:hover {
+    background-color: #2A6DB8;
+    color: #fff;
+}
+
+aside ul li a:hover i {
+    color: #fff; /* Muda a cor do ícone ao passar o mouse */
+}
+
+main {
+    padding: 20px;
+    width: calc(100% - 220px);
+}
+
+.summary-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: center;
+    font-size: 1.2em;
+    color: #2A6DB8;
+    font-weight: bold;
+}
+
+.quick-actions {
+    margin-bottom: 20px;
+}
+
+.quick-actions h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.quick-actions button {
+    background-color: #2A6DB8;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.quick-actions button:hover {
+    background-color: #1E5E9B;
+}
+
+.statistics {
+    margin-top: 20px;
+}
+
+.statistics h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilo para os resultados de busca */
+
+#search-results {
+    padding: 20px;
+    background-color: #f4f6f8;
+}
+
+.search-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-section h2 {
+    font-size: 1.8em;
+    color: #2A6DB8;
+    margin-bottom: 15px;
+}
+
+.result-card {
+    display: grid;
+    gap: 10px;
+}
+
+.result-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+    color: #333;
+}
+
+.no-result {
+    color: #888;
+    font-style: italic;
+}
+
+.loan-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f1f9ff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+}
+
+.loan-item p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.loan-item strong {
+    color: #2A6DB8;
+}
+
+.user-item, .book-item, .loan-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.user-item p, .book-item p, .loan-item p {
+    margin: 5px 0;
+}
+
+.loan-item strong {
+    color: #2A6DB8;
+}
+
+.loan-item p strong {
+    font-weight: bold;
+}
+
+.no-result {
+    font-style: italic;
+    color: #888;
+}

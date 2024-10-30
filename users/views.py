@@ -67,7 +67,7 @@ def dashboard(request):
             'users': User.objects.all(),
             'total_users': User.objects.count(),
             'total_books': Book.objects.count(),
-            'total_loans': Loan.objects.count(),
+            'total_active_loans': Loan.objects.filter(loan_status='Active').count(),
             
         }
         return render(request, 'users/dashboard_admin.html', context)
@@ -75,3 +75,13 @@ def dashboard(request):
     if request.user.is_reader:
         messages.error(request, 'Apenas administradores podem acessar esta página')
         return render(request, 'users/dashboard_reader.html')
+
+def search(request):
+    if request.method == 'POST':
+        query = request.POST.get('query')
+        users = User.objects.filter(full_name__icontains=query)
+        livros = Book.objects.filter(title__icontains=query)
+        emprestimos = Loan.objects.filter(book__title__icontains=query)
+        return render(request, 'users/search_results.html', {'users': users, 'livros': livros, 'emprestimos': emprestimos})
+    else:
+        return redirect('dashboard')

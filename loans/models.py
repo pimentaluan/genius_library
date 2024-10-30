@@ -8,8 +8,8 @@ class Loan(models.Model):
     expected_return_date = models.DateField(null=True, blank=True)
     loan_status = models.CharField(
         max_length=20, 
-        default='On Loan',
-        choices=[('On Loan', 'On Loan'), ('Returned', 'Returned')]
+        default='Active',
+        choices=[('Active', 'Ativo'), ('Returned', 'Devolvido')]
         );
 
     def __str__(self):

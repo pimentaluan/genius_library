@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('loan_date', models.DateField(auto_now_add=True)),
                 ('expected_return_date', models.DateField(blank=True, null=True)),
-                ('loan_status', models.CharField(choices=[('On Loan', 'On Loan'), ('Returned', 'Returned')], default='On Loan', max_length=20)),
+                ('loan_status', models.CharField(choices=[('Active', 'Active'), ('Returned', 'Returned')], default='Active', max_length=20)),
                 ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='books.book')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
