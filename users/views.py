@@ -24,7 +24,7 @@ def register_user(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             messages.success(request, "Usuário registrado com sucesso!")
-            return redirect('register_user')
+            return redirect('dashboard')
         else:
             messages.error(request, "Erro ao registrar o usuário. Verifique os dados informados.")
     else:
@@ -60,9 +60,7 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
-    if request.user.is_admin:
-        messages.error(request, 'Apenas administradores podem acessar esta página')
-        
+    if request.user.is_admin:        
         context = {
             'users': User.objects.all(),
             'total_users': User.objects.count(),
@@ -73,7 +71,6 @@ def dashboard(request):
         return render(request, 'users/dashboard_admin.html', context)
     
     if request.user.is_reader:
-        messages.error(request, 'Apenas administradores podem acessar esta página')
         return render(request, 'users/dashboard_reader.html')
 
 def search(request):
