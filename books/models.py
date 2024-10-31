@@ -14,6 +14,10 @@ class Book(models.Model):
     quantity_total = models.PositiveIntegerField()
     quantity_available = models.PositiveIntegerField()
     description = models.TextField(null=True, blank=True)
+
+    @property
+    def is_available(self):
+        return self.quantity_available > 0
     
     def __str__(self):
         return self.title

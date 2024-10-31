@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from users.forms import RegisterUserForm, LoginUserForm
 from django.contrib.auth import get_user_model
@@ -7,6 +7,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from loans.models import Loan
 from books.models import Book
+import json
+from django.db.models import Count
 
 
 
@@ -19,18 +21,25 @@ def register_user(request):
     
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
+        
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            messages.success(request, "Usuário registrado com sucesso!")
-            return redirect('dashboard')
+            try:
+                user = form.save(commit=False)
+                user.set_password(form.cleaned_data['password1']) 
+                user.save()
+                messages.success(request, f"Usuário registrado com sucesso!")
+                return redirect('register')
+            except Exception as e:
+                messages.error(request, f"Erro ao registrar o usuário: {e}")
+                return redirect('register')
         else:
-            messages.error(request, "Erro ao registrar o usuário. Verifique os dados informados.")
+            for field, errors in form.errors.items():
+                messages.error(request, f"Erro no campo '{field}'")
     else:
         form = RegisterUserForm()
 
     return render(request, 'users/register_user.html', {'form': form})
+
 
 def login_user(request):
     if request.method == 'POST':
@@ -60,18 +69,49 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
-    if request.user.is_admin:        
+    if request.user.is_admin: 
+        # Dados para o gráfico de status dos empréstimos
+        loan_statuses = Loan.objects.values('loan_status').annotate(count=Count('loan_status'))
+        loan_status_data = {
+            'labels': [status['loan_status'] for status in loan_statuses],
+            'data': [status['count'] for status in loan_statuses],
+        }
+
+        # Dados para o gráfico de número de livros por categoria/estilo
+        book_styles = Book.objects.values('style').annotate(count=Count('style'))
+        book_style_data = {
+            'labels': [style['style'] for style in book_styles],
+            'data': [style['count'] for style in book_styles],
+        }
+
+        # Dados para o gráfico de novos usuários registrados por mês (exemplo)
+        monthly_users = User.objects.extra(select={'month': "EXTRACT(month FROM date_joined)"}).values('month').annotate(count=Count('id'))
+        monthly_user_data = {
+            'labels': [f'Mês {int(month["month"])}' for month in monthly_users],
+            'data': [month['count'] for month in monthly_users],
+        }
+
         context = {
-            'users': User.objects.all(),
-            'total_users': User.objects.count(),
             'total_books': Book.objects.count(),
             'total_active_loans': Loan.objects.filter(loan_status='Active').count(),
-            
+            'total_users': User.objects.count(),
+            'loan_status_data': json.dumps(loan_status_data),
+            'book_style_data': json.dumps(book_style_data),
+            'monthly_user_data': json.dumps(monthly_user_data),
         }
         return render(request, 'users/dashboard_admin.html', context)
     
     if request.user.is_reader:
-        return render(request, 'users/dashboard_reader.html')
+        available_books = Book.objects.filter(quantity_available__gt=0).count()
+        user_loans = Loan.objects.filter(user=request.user).order_by('-loan_date')
+        user_active_loans = user_loans.filter(loan_status='Active').count()
+
+        context = {
+            'available_books': available_books,
+            'user_active_loans': user_active_loans,
+            'user_loans': user_loans,
+        }
+        return render(request, 'users/dashboard_reader.html', context)
 
 def search(request):
     if request.method == 'POST':
@@ -82,3 +122,62 @@ def search(request):
         return render(request, 'users/search_results.html', {'users': users, 'livros': livros, 'emprestimos': emprestimos})
     else:
         return redirect('dashboard')
+    
+def users(request):
+    user_type = request.GET.get('user_type')
+    min_active_loans = request.GET.get('min_active_loans')
+
+    users = User.objects.all()
+
+    if user_type:
+        users = users.filter(user_type=user_type)
+
+    users_data = []
+    for user in users:
+        active_loans_count = user.loan_set.filter(loan_status='Active').count()
+        total_loans_count = user.loan_set.count()
+
+        if min_active_loans and active_loans_count < int(min_active_loans):
+            continue 
+
+        users_data.append({
+            "user": user,
+            "active_loans_count": active_loans_count,
+            "total_loans_count": total_loans_count,
+        })
+
+    return render(request, 'users/users.html', {
+        'users_data': users_data,
+    })
+
+@login_required
+def edit_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+
+    if request.method == 'POST':
+        # Captura os dados do formulário
+        user.full_name = request.POST.get('full_name')
+        user.email = request.POST.get('email')
+        user.user_type = request.POST.get('user_type')
+        user.address = request.POST.get('address')
+        user.phone = request.POST.get('phone')
+
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        
+        if password1 or password2:  
+            if password1 == password2:
+                user.set_password(password1)
+            else:
+                messages.error(request, 'As senhas não coincidem.')
+                return render(request, 'users/edit_user.html', {'user': user})
+
+        try:
+            user.save()
+            messages.success(request, 'Usuário atualizado com sucesso!')
+            return redirect('users')
+        except Exception as e:
+            messages.error(request, f"Erro ao atualizar o usuário: {e}")
+            return render(request, 'users/edit_user.html', {'user': user})
+    
+    return render(request, 'users/edit_user.html', {'user': user})

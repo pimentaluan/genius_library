@@ -11,7 +11,7 @@ class User(AbstractUser):
     )
     address = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
-
+    
     @property
     def is_admin(self):
         return self.user_type == 'Admin'
