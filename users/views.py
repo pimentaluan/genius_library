@@ -70,34 +70,11 @@ def logout_view(request):
 @login_required
 def dashboard(request):
     if request.user.is_admin: 
-        # Dados para o gráfico de status dos empréstimos
-        loan_statuses = Loan.objects.values('loan_status').annotate(count=Count('loan_status'))
-        loan_status_data = {
-            'labels': [status['loan_status'] for status in loan_statuses],
-            'data': [status['count'] for status in loan_statuses],
-        }
-
-        # Dados para o gráfico de número de livros por categoria/estilo
-        book_styles = Book.objects.values('style').annotate(count=Count('style'))
-        book_style_data = {
-            'labels': [style['style'] for style in book_styles],
-            'data': [style['count'] for style in book_styles],
-        }
-
-        # Dados para o gráfico de novos usuários registrados por mês (exemplo)
-        monthly_users = User.objects.extra(select={'month': "EXTRACT(month FROM date_joined)"}).values('month').annotate(count=Count('id'))
-        monthly_user_data = {
-            'labels': [f'Mês {int(month["month"])}' for month in monthly_users],
-            'data': [month['count'] for month in monthly_users],
-        }
 
         context = {
             'total_books': Book.objects.count(),
             'total_active_loans': Loan.objects.filter(loan_status='Active').count(),
             'total_users': User.objects.count(),
-            'loan_status_data': json.dumps(loan_status_data),
-            'book_style_data': json.dumps(book_style_data),
-            'monthly_user_data': json.dumps(monthly_user_data),
         }
         return render(request, 'users/dashboard_admin.html', context)
     
@@ -155,7 +132,6 @@ def edit_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
 
     if request.method == 'POST':
-        # Captura os dados do formulário
         user.full_name = request.POST.get('full_name')
         user.email = request.POST.get('email')
         user.user_type = request.POST.get('user_type')
@@ -181,3 +157,10 @@ def edit_user(request, user_id):
             return render(request, 'users/edit_user.html', {'user': user})
     
     return render(request, 'users/edit_user.html', {'user': user})
+
+def delete_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    print(user)
+    user.delete()
+    messages.success(request, 'Usuário deletado com sucesso!')
+    return redirect('users')

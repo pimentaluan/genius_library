@@ -1,4 +1,5 @@
 from django.db import models
+from loans.models import Loan
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -18,6 +19,10 @@ class Book(models.Model):
     @property
     def is_available(self):
         return self.quantity_available > 0
+    
+    @property
+    def loans_self_count(self):
+        return Loan.objects.filter(book=self).count()
     
     def __str__(self):
         return self.title

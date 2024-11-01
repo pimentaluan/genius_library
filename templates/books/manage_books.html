@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genius Library - Gerenciar Usuários</title>
+    <title>Genius Library - Gerenciar Livros</title>
     <link rel="stylesheet" href="{% static 'styles/users.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -32,8 +32,7 @@
                 <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
-
-                <li><a href=""><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
+                <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
                 <li><a href=""><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
                 <li><a href=""><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
@@ -41,37 +40,50 @@
 
         <main id="search-results">
             <section class="search-section" id="users-section">
-                <h2>Usuários</h2>
+                <h2>Livros</h2>
 
-                <form action="{% url 'users' %}" method="GET" class="filter-form">
-                    <label for="user_type">Tipo de Usuário:</label>
-                    <select name="user_type" id="user_type">
+                <form action="{% url 'manage_books' %}" method="GET" class="filter-form">
+                    <label for="book_style">Gênero do livro</label>
+                    <select name="book_style" id="user_type">
                         <option value="">Todos</option>
-                        <option value="Admin">Administrador</option>
-                        <option value="Reader">Leitor</option>
+                        <option value="Fiction">Ficção</option>
+                        <option value="Non-Fiction">Não ficção</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Science">Científico</option>
+                        <option value="Biography">Biografia</option>
+                        <option value="Horror">Terror</option>
                     </select>
 
-                    <label for="min_active_loans">Mínimo de Aluguéis Ativos:</label>
-                    <input type="number" name="min_active_loans" id="min_active_loans" min="0" placeholder="Ex: 1">
+                    <label for="quantity_available">Mínimo de livros disponíveis:</label>
+                    <input type="number" name="quantity_available" id="min_active_loans" min="0" placeholder="Ex: 1">
 
                     <button type="submit">Filtrar</button>
                 </form>
 
                 <div class="user-list">
-                    {% if users_data %}
-                    {% for user_data in users_data %}
+                    {% if books %}
+                    {% for book in books %}
                     <div class="user-card">
                         <div class="user-info">
-                            <p><strong>Nome:</strong> {{ user_data.user.full_name }}</p>
-                            <p><strong>Email:</strong> {{ user_data.user.email }}</p>
-                            <p><strong>Tipo:</strong> {{ user_data.user.get_user_type_display }}</p>
-                            <p><strong>Aluguéis Ativos:</strong> {{ user_data.active_loans_count }}</p>
-                            <p><strong>Total de Aluguéis:</strong> {{ user_data.total_loans_count }}</p>
+                            <p><strong>Título:</strong> {{ book.title }}</p>
+                            <p><strong>Autor:</strong> {{ book.author }}</p>
+                            <p><strong>Gênero:</strong> {{ book.style }}</p>
+                            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+                            <p><strong>Editora:</strong> {{ book.publisher }}</p>
+                            <p><strong>Ano de publicação:</strong> {{ book.publish_year }}</p>
+                            <p><strong>Quantidade total: </strong> {{ book.quantity_total }} </p>
+                            <p><strong>Quantidade disponível:</strong> {{ book.quantity_available }}</p>
+                            <p><strong>Empréstimos ativos: </strong> {{ book.loans_self_count }}</p>
+                            {% if book.description %}
+                            <p><strong>Descrição:</strong> {{ book.description }}</p>
+                            {% endif %}
                         </div>
                         <div class="user-actions">
-                            <a href="{% url 'edit_user' user_data.user.id  %}" class="edit-btn"><i
+                            <a href="{% url 'edit_book' book.id %}" class="edit-btn"><i
                                     class="fas fa-edit"></i> Editar</a>
-                            <a href="" class="delete-btn"><i class="fas fa-trash-alt"></i> Excluir</a>
+                            <a href="{% url 'delete_book' book.id %}" class="delete-btn" onclick="return confirm('Tem certeza de que deseja excluir este livro?');">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </a> 
                         </div>
                     </div>
                     {% endfor %}
