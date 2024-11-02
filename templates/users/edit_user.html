@@ -90,9 +90,8 @@
                     <div class="form-group">
                         <label for="user_type"><i class="fas fa-user-tag"></i> Tipo de Usuário</label>
                         <select id="user_type" name="user_type">
-                            <option value="Admin" {% if user.user_type=="Admin" %}selected{% endif %}>Administrador
-                            </option>
-                            <option value="Reader" {% if user.user_type=="Reader" %}selected{% endif %}>Leitor</option>
+                            <option value="Admin" {% if user.user_type == 'Admin' %}selected{% endif %}>Administrador</option>
+                            <option value="Reader" {% if user.user_type == 'Reader' %}selected{% endif %}>Leitor</option>                            
                         </select>
                     </div>
 
