@@ -37,6 +37,21 @@ header nav a {
     font-weight: bold;
 }
 
+h2 {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    color: #2A6DB8;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+h2 i {
+    color: #2A6DB8;
+    font-size: 1.2em;
+}
+
+
 .search-form {
     display: flex;
     align-items: center;
@@ -233,4 +248,61 @@ main h2{
 
 .submit-btn:hover {
     background-color: #1E5E9B;
+}
+
+/* Aprovar */
+
+.pending-loans {
+
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loan-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.loan-table-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2A6DB8;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.loan-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loan-card div {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.approve-btn {
+    background-color: #2A6DB8;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.approve-btn:hover {
+    background-color: #1a4e8a;
 }

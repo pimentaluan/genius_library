@@ -8,4 +8,5 @@ urlpatterns = [
     path('', redirect_to_login, name='root_redirect'),
     path('', include('users.urls')),
     path('', include('books.urls')),
+    path('', include('loans.urls')),
 ]

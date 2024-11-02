@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,8 @@
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
 
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href=""><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a>
+                </li>
                 <li><a href=""><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>

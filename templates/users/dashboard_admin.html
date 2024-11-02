@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,8 @@
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
 
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href=""><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a>
+                </li>
                 <li><a href=""><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
@@ -42,26 +43,45 @@
         <main>
             <section class="summary-cards">
                 <div class="card">
+                    {% if total_books > 0 %}
                     <p style="font-size: 2rem;">{{ total_books }}</p>
+                    {% else %}
+                    <p style="font-size: 2rem;">0</p>
+                    {% endif %}
                     <p>Total de Livros <i class="fas fa-book" style="font-size: 1.5rem;"></i></p>
                 </div>
                 <div class="card">
-                    <p style="font-size: 2rem;">{{ total_active_loans }}</p>
-                    <p>Empréstimos Ativos <i class="fas fa-handshake" style="font-size: 1.5rem;"></i>
-                    </p>
+                    {% if total_pending_loans > 0 %}
+                    <p style="font-size: 2rem;">{{ total_pending_loans }}</p>
+                    {% else %}
+                    <p style="font-size: 2rem;">0</p>
+                    {% endif %}
+                    <p>Empréstimos Pendentes <i class="fas fa-handshake" style="font-size: 1.5rem;"></i></p>
                 </div>
                 <div class="card">
-                    <p style="font-size: 2rem;">{{ total_users }}</p>
-                    <p>Usuários Registrados <i class="fas fa-users" style="font-size: 1.5rem;"></i></p>
+                    {% if total_active_loans > 0 %}
+                    <p style="font-size: 2rem;">{{ total_active_loans }}</p>
+                    {% else %}
+                    <p style="font-size: 2rem;">0</p>
+                    {% endif %}
+                    <p>Empréstimos Ativos <i class="fas fa-handshake" style="font-size: 1.5rem;"></i></p>
                 </div>
-
+                <div class="card">
+                    {% if total_users > 0 %}
+                    <p style="font-size: 2rem;">{{ total_users }}</p>
+                    {% else %}
+                    <p style="font-size: 2rem;">0</p>
+                    {% endif %}
+                    <p>Usuários Registrados <i class="fas fa-users" style="font-size: 1.5rem;"></i></p>
+                </div>              
             </section>
 
             <section class="quick-actions">
                 <h2>Ações Rápidas</h2>
-                <a><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a>
+                <a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a>
                 <a><i class="fas fa-undo"></i> Devolução de Livro</a>
-                <a href="{% url 'add_book' %}" class="button-link"><i class="fas fa-plus-circle"></i> Adicionar Novo Livro</a>
+                <a href="{% url 'add_book' %}" class="button-link"><i class="fas fa-plus-circle"></i> Adicionar Novo
+                    Livro</a>
                 <a><i class="fas fa-chart-bar"></i> Acessar Relatórios</a>
             </section>
         </main>

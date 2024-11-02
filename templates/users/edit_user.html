@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -33,9 +33,8 @@
                 <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
-
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href=""><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
                 <li><a href=""><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
@@ -88,13 +87,12 @@
                             <input type="text" id="address" name="address" value="{{ user.address }}">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="user_type"><i class="fas fa-user-tag"></i> Tipo de Usuário</label>
-                        <select id="user_type" name="user_type" required>
-                            <option value="Admin" {% if user.user_type=='Admin' %}selected{% endif %}>Administrador
+                        <select id="user_type" name="user_type">
+                            <option value="Admin" {% if user.user_type=="Admin" %}selected{% endif %}>Administrador
                             </option>
-                            <option value="Reader" {% if user.user_type=='Reader' %}selected{% endif %}>Leitor</option>
+                            <option value="Reader" {% if user.user_type=="Reader" %}selected{% endif %}>Leitor</option>
                         </select>
                     </div>
 

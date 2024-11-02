@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Empréstimo - Genius Library</title>
+    <link rel="stylesheet" href="{% static 'styles/register_loan.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        <div class="busca">
+            <form action="{% url 'buscar' %}" method="POST" class="search-form">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <nav>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </header>
+
+    <section class="conteiner">
+        <aside>
+            <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
+                <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
+                <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
+                <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
+                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href=""><i class="fas fa-chart-line"></i> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <main>     
+            <section class="pending-loans">
+                <h2><i class="fas fa-clock"></i> Empréstimos Pendentes</h2>
+                
+                {% if pending_loans %}
+                    <div class="loan-table">
+                        <div class="loan-table-header">
+                            <div>Usuário</div>
+                            <div>Livro</div>
+                            <div>Data do Pedido</div>
+                            <div>Ações</div>
+                        </div>
+                        {% for loan in pending_loans %}
+                            <div class="loan-card">
+                                <div>{{ loan.user.full_name }}</div>
+                                <div>{{ loan.book.title }}</div>
+                                <div>{{ loan.loan_date }}</div>
+                                <div>
+                                    <form action="{% url 'register_loan' %}" method="POST" style="display:inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="loan_id" value="{{ loan.id }}">
+                                        <button type="submit" name="approve_loan" class="approve-btn">
+                                            <i class="fas fa-check-circle"></i> Aprovar
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Não há empréstimos pendentes.</p>
+                {% endif %}
+            </section>
+                   
+            <section class="form-container">
+                <h2><i class="fas fa-handshake"></i> Registrar Empréstimo</h2>
+            
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            
+                <form action="{% url 'register_loan' %}" method="POST">
+                    {% csrf_token %}
+            
+                    {{ form.non_field_errors }}
+            
+                    <div class="form-group">
+                        {{ form.user.label_tag }} {{ form.user }}
+                        {{ form.user.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.book.label_tag }} {{ form.book }}
+                        {{ form.book.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.expected_return_date.label_tag }} {{ form.expected_return_date }}
+                        {{ form.expected_return_date.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.loan_status.label_tag }} {{ form.loan_status }}
+                        {{ form.loan_status.errors }}
+                    </div>
+            
+                    <button type="submit" class="submit-btn"><i class="fas fa-plus-circle"></i> Registrar Empréstimo</button>
+                </form>
+            </section> 
+        </main>
+    </section>
+</body>
+
+</html>

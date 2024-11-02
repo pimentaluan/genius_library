@@ -74,6 +74,7 @@ def dashboard(request):
         context = {
             'total_books': Book.objects.count(),
             'total_active_loans': Loan.objects.filter(loan_status='Active').count(),
+            'total_pending_loans': Loan.objects.filter(loan_status='Pending').count(),
             'total_users': User.objects.count(),
         }
         return render(request, 'users/dashboard_admin.html', context)
