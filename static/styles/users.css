@@ -78,8 +78,8 @@ aside {
     background-color: #001825;
     color: white;
     padding: 20px;
-    height: 100vh;
     position: sticky;
+    min-height: 100vh;
 }
 
 aside ul {

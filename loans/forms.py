@@ -1,5 +1,5 @@
 from django import forms
-from .models import Loan
+from .models import Loan, ReturnLoan
 
 class LoanForm(forms.ModelForm):
     class Meta:
@@ -30,4 +30,12 @@ class RequestLoanForm(forms.ModelForm):
             'book': 'Livro',
             'loan_date': 'Data de Empréstimo',
             'expected_return_date': 'Data de Devolução Prevista',
+        }
+        
+class ReturnLoanForm(forms.ModelForm):
+    class Meta:
+        model = ReturnLoan
+        fields = ['note']
+        widgets = {
+            'note': forms.Textarea(attrs={'placeholder': 'Adicione uma observação sobre a devolução (opcional)', 'rows': 3}),
         }

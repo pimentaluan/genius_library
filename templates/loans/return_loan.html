@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolver Livro - Genius Library</title>
+    <link rel="stylesheet" href="{% static 'styles/return_loan.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        <div class="busca">
+            <form action="{% url 'buscar' %}" method="POST" class="search-form">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <nav>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </header>
+
+    <section class="conteiner">
+        <aside>
+            <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
+                <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
+                <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
+                <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
+                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section class="return-loan-form">
+                <h2><i class="fas fa-undo"></i> Devolver Livro</h2>
+
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="loan-info">
+                    <p><strong>Usuário:</strong> {{ loan.user.full_name }}</p>
+                    <p><strong>Livro:</strong> {{ loan.book.title }}</p>
+                    <p><strong>Data de Empréstimo:</strong> {{ loan.loan_date|date:"d/m/Y" }}</p>
+                    <p><strong>Data de Devolução Prevista:</strong> {{ loan.expected_return_date|date:"d/m/Y" }}</p>
+                </div>
+
+                <form action="{% url 'return_loan' loan.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.note.label_tag }} {{ form.note }}
+                        {{ form.note.errors }}
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-undo"></i> Confirmar Devolução</button>
+                </form>
+            </section>
+        </main>
+    </section>
+</body>
+</html>

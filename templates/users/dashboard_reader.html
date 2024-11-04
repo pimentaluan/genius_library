@@ -29,7 +29,7 @@
         <aside>
             <ul>
                 <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href=""><i class="fas fa-book"></i> Livros Disponíveis</a></li>
+                <li><a href="{% url 'available_books' %}"><i class="fas fa-book"></i> Livros Disponíveis</a></li>
                 <li><a href=""><i class="fas fa-history"></i> Histórico de Empréstimos</a></li>
             </ul>
         </aside>
@@ -66,7 +66,7 @@
                     </div>
                     {% endfor %}
                 </div>
-                <a href="" class="view-more">Ver mais...</a>
+                <a href="{% url 'available_books' %}" class="view-more">Ver mais...</a>
                 {% else %}
                 <p>Nenhum empréstimo no histórico.</p>
                 {% endif %}

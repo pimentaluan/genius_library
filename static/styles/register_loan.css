@@ -94,6 +94,7 @@ aside {
     color: white;
     padding: 20px;
     position: sticky;
+    min-height: 100vh;
 }
 
 aside ul {

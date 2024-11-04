@@ -81,7 +81,7 @@ def dashboard(request):
     
     if request.user.is_reader:
         available_books = Book.objects.filter(quantity_available__gt=0).count()
-        user_loans = Loan.objects.filter(user=request.user).order_by('-loan_date')
+        user_loans = Loan.objects.filter(user=request.user).order_by('-expected_return_date')
         user_active_loans = user_loans.filter(loan_status='Active').count()
 
         context = {

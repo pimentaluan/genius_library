@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import LoanForm, RequestLoanForm
+from .forms import LoanForm, RequestLoanForm, ReturnLoanForm
 from .models import Loan
 from books.models import Book
 
@@ -71,3 +71,33 @@ def request_loan(request):
         'loans': loans,
         'form': form,
     })
+    
+def manage_loans(request):
+    loans = Loan.objects.all()
+    return render(request, 'loans/manage_loans.html', {'loans': loans})
+
+
+def return_loan(request, loan_id):
+    loan = get_object_or_404(Loan, id=loan_id, loan_status='Active')
+
+    if request.method == 'POST':
+        form = ReturnLoanForm(request.POST)
+        if form.is_valid():
+            loan.loan_status = 'Returned'
+            loan.save()
+            
+            loan.book.quantity_available += 1
+            loan.book.save()
+
+            return_entry = form.save(commit=False)
+            return_entry.loan = loan
+            return_entry.save()
+
+            messages.success(request, "Empréstimo devolvido com sucesso!")
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Erro ao processar a devolução. Verifique os dados e tente novamente.")
+    else:
+        form = ReturnLoanForm()
+
+    return render(request, 'loans/return_loan.html', {'form': form, 'loan': loan})

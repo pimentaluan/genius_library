@@ -18,7 +18,7 @@ class Loan(models.Model):
     
 class ReturnLoan(models.Model):
     loan = models.ForeignKey('Loan', on_delete=models.CASCADE)
-    return_date = models.DateField(auto_now_add=True)
+    return_date = models.DateField(default=timezone.now)
     note = models.TextField(null=True, blank=True)
 
     def __str__(self):

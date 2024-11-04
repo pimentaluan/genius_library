@@ -143,74 +143,54 @@ main {
     background-color: #e53935;
 }
 
-#register-user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f4f6f8;
-}
-
-.register-form {
+.return-loan-form {
     background-color: #fff;
-    width: 545px;
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.register-form h2 {
+.return-loan-form h2 {
     font-size: 1.8em;
     color: #2A6DB8;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.form-content .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
-    font-size: 1em;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: bold;
+.return-loan-form label {
+    font-size: 1.1em;
+    margin-bottom: 5px;
 }
 
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 10px;
+.return-loan-form input{
+    padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1em;
-    margin-top: 5px;
-}
-
-.form-group input:focus, .form-group select:focus {
-    outline: none;
-    border-color: #2A6DB8;
-}
-
-.submit-button {
     width: 100%;
-    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.loan-info p {
+    margin: 8px 0;
+    font-size: 1em;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.submit-btn {
     background-color: #2A6DB8;
     color: white;
-    font-size: 1.1em;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 1.1em;
     cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     transition: background-color 0.3s;
 }
 
-.submit-button:hover {
-    background-color: #1c5493;
+.submit-btn:hover {
+    background-color: #1E5E9B;
 }
-
