@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    color: #333;
+    flex-direction: column;
+}
+
+header {
+    background-color: #2A6DB8;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    /* Altura aumentada */
+}
+
+header .logo {
+    width: 100px;
+    margin-left: 50px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-form input[type="text"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    width: 500px;
+
+}
+
+.search-form button {
+    padding: 8px 12px;
+    background-color: #001825;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #001825;
+}
+
+.conteiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+aside {
+    background-color: #001825;
+    color: white;
+    padding: 20px;
+    position: sticky;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li {
+    margin: 20px 0;
+}
+
+aside ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+aside ul li a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+    color: #A9A9A9;
+}
+
+aside ul li a:hover {
+    background-color: #2A6DB8;
+    color: #fff;
+}
+
+aside ul li a:hover i {
+    color: #fff;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    width: calc(100% - 220px);
+    height: 100vh;
+}
+
+main h2{
+    margin-bottom: 20px;
+}
+
+.messages {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.message {
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+}
+
+.message.success {
+    background-color: #4caf50;
+}
+
+.message.error {
+    background-color: #e53935;
+}
+
+#register-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f6f8;
+}
+
+
+.form-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 1.1em;
+    color: #2A6DB8;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label i {
+    margin-right: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea,
+.form-group input[type="date"] {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group input[type="file"]:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input[type="date"]:focus {
+    border-color: #2A6DB8;
+}
+
+.form-group small {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background-color: #2A6DB8;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.submit-btn i {
+    margin-right: 8px;
+}
+
+.submit-btn:hover {
+    background-color: #1E5E9B;
+}

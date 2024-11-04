@@ -29,12 +29,8 @@
         <aside>
             <ul>
                 <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
-                <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
-                <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
-                <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
-                <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
+                <li><a href=""><i class="fas fa-book"></i> Livros Disponíveis</a></li>
+                <li><a href=""><i class="fas fa-history"></i> Histórico de Empréstimos</a></li>
             </ul>
         </aside>
 
@@ -42,7 +38,7 @@
             <section class="search-section" id="users-section">
                 <h2>Livros</h2>
 
-                <form action="{% url 'manage_books' %}" method="GET" class="filter-form">
+                <form action="{% url 'available_books' %}" method="GET" class="filter-form">
                     <label for="book_style">Gênero do livro</label>
                     <select name="book_style" id="user_type">
                         <option value="">Todos</option>
@@ -77,14 +73,6 @@
                             {% if book.description %}
                             <p><strong>Descrição:</strong> {{ book.description }}</p>
                             {% endif %}
-                        </div>
-                        <div class="user-actions">
-                            <a href="{% url 'edit_book' book.id %}" class="edit-btn"><i class="fas fa-edit"></i>
-                                Editar</a>
-                            <a href="{% url 'delete_book' book.id %}" class="delete-btn"
-                                onclick="return confirm('Tem certeza de que deseja excluir este livro?');">
-                                <i class="fas fa-trash-alt"></i> Excluir
-                            </a>
                         </div>
                     </div>
                     {% endfor %}

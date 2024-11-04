@@ -52,3 +52,17 @@ def delete_book(request, book_id):
     book.delete()
     messages.success(request, "Livro deletado com sucesso!")
     return redirect('manage_books')
+
+def available_books(request):
+    book_style = request.GET.get('book_style')
+    quantity_available = request.GET.get('quantity_available')
+    
+    books = Book.objects.all()
+    
+    if book_style:
+        books = books.filter(style=book_style)
+        
+    if quantity_available:
+        books = books.filter(quantity_available__gte=int(quantity_available))
+        
+    return render(request, 'books/available_books.html', {'books': books})

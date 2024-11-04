@@ -285,12 +285,18 @@ main {
     margin-bottom: 15px;
 }
 
+.history a{
+    color: #2A6DB8;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+
 .loan-history {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 10px;
-    justify-content: space-between;
 }
 
 .loan-card {

@@ -1,10 +1,11 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Loan(models.Model):
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
     book = models.ForeignKey('books.Book', on_delete=models.CASCADE)
-    loan_date = models.DateField(auto_now_add=True)
+    loan_date = models.DateField(default=timezone.now)
     expected_return_date = models.DateField(null=True, blank=True)
     loan_status = models.CharField(
         max_length=20, 
