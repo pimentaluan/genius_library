@@ -1,0 +1,80 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "full_name": "Administrador",
+      "email": "engeselt@email.com",
+      "is_superuser": true,
+      "is_staff": true,
+      "user_type": "Admin",
+      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "username": "leitor1",
+      "full_name": "Leitor Um",
+      "email": "leitor1@email.com",
+      "user_type": "Reader",
+      "address": "Rua A, 123",
+      "phone": "1234567890",
+      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "username": "leitor2",
+      "full_name": "Leitor Dois",
+      "email": "leitor2@email.com",
+      "user_type": "Reader",
+      "address": "Rua B, 456",
+      "phone": "0987654321",
+      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+      "username": "leitor3",
+      "full_name": "Leitor Três",
+      "email": "leitor3@email.com",
+      "user_type": "Reader",
+      "address": "Rua C, 789",
+      "phone": "1122334455",
+      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "username": "leitor4",
+      "full_name": "Leitor Quatro",
+      "email": "leitor4@email.com",
+      "user_type": "Reader",
+      "address": "Rua D, 101",
+      "phone": "5566778899",
+      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "username": "leitor5",
+      "full_name": "Leitor Cinco",
+      "email": "leitor5@email.com",
+      "user_type": "Reader",
+      "address": "Rua E, 202",
+      "phone": "6677889900",
+      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+    }
+  }
+]

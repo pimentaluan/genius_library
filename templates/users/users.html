@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genius Library - Gerenciar Usuários</title>
+    <link rel="stylesheet" href="{% static 'styles/users.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        <div class="busca">
+            <form action="{% url 'buscar' %}" method="POST" class="search-form">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+            </form>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </header>
+
+    <div class="overlay" onclick="closeMenu()"></div>
+
+    <section class="conteiner">
+        <aside>
+            <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
+                <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
+                <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
+                <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
+                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'manage_loans' %}"><i class="fas fa-undo"></i> Gerenciar/Devolver Empréstimos</a></li>
+                <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <main id="search-results">
+            <section class="search-section" id="users-section">
+                <h2><i class="fas fa-users"></i> Usuários</h2>
+
+                <form action="{% url 'users' %}" method="GET" class="filter-form">
+                    <label for="user_type"><i class="fas fa-user-tag"></i> Tipo de Usuário:</label>
+                    <select name="user_type" id="user_type">
+                        <option value="">Todos</option>
+                        <option value="Admin">Administrador</option>
+                        <option value="Reader">Leitor</option>
+                    </select>
+
+                    <label for="min_active_loans"><i class="fas fa-chart-bar"></i> Mínimo de Aluguéis Ativos:</label>
+                    <input type="number" name="min_active_loans" id="min_active_loans" min="0" placeholder="Ex: 1">
+
+                    <button type="submit"><i class="fas fa-filter"></i> Filtrar</button>
+                </form>
+
+                <div class="user-list">
+                    {% if users_data %}
+                    {% for user_data in users_data %}
+                    <div class="user-card">
+                        <div class="user-info">
+                            <p><i class="fas fa-user"></i> <strong>Nome:</strong> {{ user_data.user.full_name }}</p>
+                            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> {{ user_data.user.email }}</p>
+                            <p><i class="fas fa-user-tag"></i> <strong>Tipo:</strong> {{ user_data.user.get_user_type_display }}</p>
+                            <p><i class="fas fa-tasks"></i> <strong>Aluguéis Ativos:</strong> {{ user_data.active_loans_count }}</p>
+                            <p><i class="fas fa-history"></i> <strong>Total de Aluguéis:</strong> {{ user_data.total_loans_count }}</p>
+                        </div>
+                        <div class="user-actions">
+                            <a href="{% url 'edit_user' user_data.user.id %}" class="edit-btn"><i class="fas fa-edit"></i> Editar</a>
+                            <a href="{% url 'delete_user' user_id=user_data.user.id %}" class="delete-btn" onclick="return confirm('Tem certeza de que deseja excluir este usuário?');">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="no-result">Nenhum usuário encontrado.</p>
+                    {% endif %}
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <script src="{% static 'js/menu.js' %}"></script>
+</body>
+
+</html>
