@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Empréstimos - Genius Library</title>
+    <title>Relatório - Genius Library</title>
     <link rel="stylesheet" href="{% static 'styles/reports.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -17,7 +17,7 @@
             <form action="{% url 'buscar' %}" method="POST" class="search-form">
                 {% csrf_token %}
                 <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
-                <button type="submit">Buscar</button>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
         <nav>
@@ -44,7 +44,7 @@
                 {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
-                    <p class="message {{ message.tags }}">{{ message }}</p>
+                    <p class="message {{ message.tags }}"><i class="fas fa-info-circle"></i> {{ message }}</p>
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -70,11 +70,11 @@
                 <table class="report-table">
                     <thead>
                         <tr>
-                            <th>Usuário</th>
-                            <th>Livro</th>
-                            <th>Data de Empréstimo</th>
-                            <th>Data de Devolução</th>
-                            <th>Status</th>
+                            <th><i class="fas fa-user"></i> Usuário</th>
+                            <th><i class="fas fa-book"></i> Livro</th>
+                            <th><i class="fas fa-calendar-plus"></i> Data de Empréstimo</th>
+                            <th><i class="fas fa-calendar-check"></i> Data de Devolução</th>
+                            <th><i class="fas fa-info-circle"></i> Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,14 +83,18 @@
                             <td>{{ loan.user.full_name }}</td>
                             <td>{{ loan.book.title }}</td>
                             <td>{{ loan.loan_date|date:"d/m/Y" }}</td>
+                            {% if loan.expected_return_date %}
                             <td>{{ loan.expected_return_date|date:"d/m/Y" }}</td>
-                            <td>{{ loan.loan_status }}</td>
+                            {% else %}
+                            <strong><td style="color: red;">Não informada</td></strong>
+                            {% endif %}
+                            <td {% if loan.loan_status == 'Active' %} style="color: green;" {% endif %}>{{ loan.loan_status }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
                 {% else %}
-                <p class="no-results">Nenhum empréstimo encontrado para o período selecionado.</p>
+                <p class="no-results"><i class="fas fa-exclamation-circle"></i> Nenhum empréstimo encontrado para o período selecionado.</p>
                 {% endif %}
             </section>
         </main>

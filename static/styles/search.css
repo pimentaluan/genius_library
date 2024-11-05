@@ -48,7 +48,6 @@ header nav a {
     border: 1px solid #ccc;
     font-size: 1em;
     width: 500px;
-
 }
 
 .search-form button {
@@ -121,79 +120,68 @@ main {
     width: calc(100% - 220px);
 }
 
-.messages {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.message {
-    color: #fff;
-    padding: 0.8rem;
-    border-radius: 6px;
-    font-weight: 600;
-    margin-bottom: 0.7rem;
-}
-
-.message.success {
-    background-color: #4caf50;
-}
-
-.message.error {
-    background-color: #e53935;
-}
-
-.return-loan-form {
-    background-color: #fff;
+#search-results {
     padding: 20px;
+    background-color: #f4f6f8;
+}
+
+.search-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.return-loan-form h2 {
+.search-section h2 {
     font-size: 1.8em;
     color: #2A6DB8;
     margin-bottom: 15px;
 }
 
-.return-loan-form label {
-    font-size: 1.1em;
-    margin-bottom: 5px;
-}
-
-.return-loan-form textarea {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    width: 100%;
-    margin-bottom: 10px;
-    resize: none;
-}
-
-
-.loan-info p {
-    margin: 8px 0;
-    font-size: 1em;
-}
-
-
-.form-group {
-    margin-bottom: 15px;
+.cards-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.submit-btn {
-    background-color: #2A6DB8;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    min-width: 250px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-content {
     font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    color: #333;
 }
 
-.submit-btn:hover {
-    background-color: #1E5E9B;
+.card-content p {
+    margin: 10px 0;
+}
+
+.card-content strong {
+    color: #2A6DB8;
+    font-weight: bold;
+}
+
+.card i {
+    color: #2A6DB8;
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.no-result {
+    color: #888;
+    font-style: italic;
 }

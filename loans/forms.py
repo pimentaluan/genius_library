@@ -39,3 +39,6 @@ class ReturnLoanForm(forms.ModelForm):
         widgets = {
             'note': forms.Textarea(attrs={'placeholder': 'Adicione uma observação sobre a devolução (opcional)', 'rows': 3}),
         }
+        labels = {
+            'note': 'Observação',
+        }

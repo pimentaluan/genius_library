@@ -17,7 +17,7 @@
             <form action="{% url 'buscar' %}" method="POST" class="search-form">
                 {% csrf_token %}
                 <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
-                <button type="submit">Buscar</button>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
         <nav>
@@ -33,8 +33,7 @@
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar
-                        Empréstimo</a></li>
+                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
                 <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
@@ -53,9 +52,9 @@
                     </div>
                     {% for loan in pending_loans %}
                     <div class="loan-card">
-                        <div>{{ loan.user.full_name }}</div>
-                        <div>{{ loan.book.title }}</div>
-                        <div>{{ loan.loan_date }}</div>
+                        <div><i class="fas fa-user"></i> {{ loan.user.full_name }}</div>
+                        <div><i class="fas fa-book"></i> {{ loan.book.title }}</div>
+                        <div><i class="fas fa-calendar-alt"></i> {{ loan.loan_date }}</div>
                         <div>
                             <form action="{% url 'register_loan' %}" method="POST" style="display:inline;">
                                 {% csrf_token %}
@@ -88,23 +87,28 @@
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     <div class="form-group">
-                        {{ form.user.label_tag }} {{ form.user }}
+                        <label><i class="fas fa-user"></i> {{ form.user.label_tag }}</label>
+                        {{ form.user }}
                         {{ form.user.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.book.label_tag }} {{ form.book }}
+                        <label><i class="fas fa-book"></i> {{ form.book.label_tag }}</label>
+                        {{ form.book }}
                         {{ form.book.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.loan_date.label_tag }} {{ form.loan_date }}
+                        <label><i class="fas fa-calendar-plus"></i> {{ form.loan_date.label_tag }}</label>
+                        {{ form.loan_date }}
                         {{ form.loan_date.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.expected_return_date.label_tag }} {{ form.expected_return_date }}
+                        <label><i class="fas fa-calendar-check"></i> {{ form.expected_return_date.label_tag }}</label>
+                        {{ form.expected_return_date }}
                         {{ form.expected_return_date.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.loan_status.label_tag }} {{ form.loan_status }}
+                        <label><i class="fas fa-info-circle"></i> {{ form.loan_status.label_tag }}</label>
+                        {{ form.loan_status }}
                         {{ form.loan_status.errors }}
                     </div>
                     <button type="submit" name="register_loan" class="submit-btn">

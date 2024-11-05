@@ -179,10 +179,16 @@ main {
 }
 
 .user-info p {
-    margin: 5px 0;
+    margin: 8px 0;
     color: #333;
-    font-size: 0.95em;
+    font-size: 1em;
 }
+
+.user-info strong {
+    color: #2A6DB8;
+    font-weight: bold;
+}
+
 
 .user-actions {
     margin-top: 10px;
@@ -207,6 +213,22 @@ main {
 
 .edit-btn:hover {
     background-color: #1e4a7b;
+}
+
+.desactivate-btn {
+    background-color: #f39c12;
+}
+
+.desactivate-btn:hover {
+    background-color: #e4920f;
+}
+
+.activate-btn {
+    background-color: #27ae60;
+}
+
+.activate-btn:hover {
+    background-color: #23804b;
 }
 
 .delete-btn {

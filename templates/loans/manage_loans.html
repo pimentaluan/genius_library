@@ -17,7 +17,7 @@
             <form action="{% url 'buscar' %}" method="POST" class="search-form">
                 {% csrf_token %}
                 <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
-                <button type="submit">Buscar</button>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
         <nav>
@@ -33,28 +33,28 @@
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
                 <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
 
         <main id="search-results">
             <section class="search-section" id="users-section">
-                <h2>Devolver empréstimos</h2>
+                <h2><i class="fas fa-undo"></i> Devolver Empréstimos</h2>
 
                 <div class="user-list">
                     {% if loans %}
                     {% for loan in loans %}
                     <div class="user-card">
                         <div class="user-info">
-                            <p><strong>Livro:</strong> {{ loan.book }}</p>
-                            <p><strong>Data de empréstimo:</strong> {{ loan.loan_date }}</p>
-                            <p><strong>Data prevista de devolução:</strong> {{ loan.expected_return_date }}</p>
-                            <p><strong>Status do empréstimo:</strong> {{ loan.loan_status }}</p>
+                            <p><i class="fas fa-book"></i> <strong>Livro:</strong> {{ loan.book }}</p>
+                            <p><i class="fas fa-calendar-alt"></i> <strong>Data de Empréstimo:</strong> {{ loan.loan_date }}</p>
+                            <p><i class="fas fa-calendar-check"></i> <strong>Data Prevista de Devolução:</strong> {{ loan.expected_return_date }}</p>
+                            <p><i class="fas fa-info-circle"></i> <strong>Status do Empréstimo:</strong> {{ loan.loan_status }}</p>
                         </div>
                         {% if loan.loan_status == 'Active' %}
                         <div class="user-actions">
-                            <a href="{% url 'return_loan' loan.id %}" class="delete-btn">                                
+                            <a href="{% url 'return_loan' loan.id %}" class="delete-btn">
                                 <i class="fas fa-undo"></i> Devolver Livro
                             </a>
                         </div>

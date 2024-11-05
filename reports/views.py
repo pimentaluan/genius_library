@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from loans.models import Loan
 from django.contrib import messages
 from datetime import datetime
 
 def report(request):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     loans = None
     if request.method == 'POST':
         start_date = request.POST.get('start_date')

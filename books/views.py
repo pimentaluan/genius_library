@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect
 from .forms import BookForm
 from django.contrib import messages
 from .models import Book
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def add_book(request):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
@@ -19,6 +23,8 @@ def add_book(request):
     return render(request, 'books/add_book.html', {'form': form})
 
 def manage_books(request):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     book_style = request.GET.get('book_style')
     quantity_available = request.GET.get('quantity_available')
     
@@ -33,6 +39,9 @@ def manage_books(request):
     return render(request, 'books/manage_books.html', {'books': books})
 
 def edit_book(request, book_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
+    
     book = Book.objects.get(id=book_id)
     
     if request.method == 'POST':
@@ -48,16 +57,39 @@ def edit_book(request, book_id):
     return render(request, 'books/edit_book.html', {'form': form, 'book': book})
 
 def delete_book(request, book_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
+    
     book = Book.objects.get(id=book_id)
     book.delete()
     messages.success(request, "Livro deletado com sucesso!")
+    return redirect('manage_books')
+
+def desactivate_book(request, book_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
+    
+    book = Book.objects.get(id=book_id)
+    book.ativo = False
+    book.save()
+    messages.success(request, "Livro desativado com sucesso!")
+    return redirect('manage_books')
+
+def activate_book(request, book_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
+    
+    book = Book.objects.get(id=book_id)
+    book.ativo = True
+    book.save()
+    messages.success(request, "Livro ativado com sucesso!")
     return redirect('manage_books')
 
 def available_books(request):
     book_style = request.GET.get('book_style')
     quantity_available = request.GET.get('quantity_available')
     
-    books = Book.objects.all()
+    books = Book.objects.filter(quantity_available__gt=0, ativo=True)
     
     if book_style:
         books = books.filter(style=book_style)

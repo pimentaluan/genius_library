@@ -3,8 +3,12 @@ from django.contrib import messages
 from .forms import LoanForm, RequestLoanForm, ReturnLoanForm
 from .models import Loan
 from books.models import Book
+from django.contrib.auth.decorators import login_required
+
 
 def register_loan(request):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     if request.method == 'POST' and 'register_loan' in request.POST:
         form = LoanForm(request.POST)
         if form.is_valid():
@@ -73,11 +77,15 @@ def request_loan(request):
     })
     
 def manage_loans(request):
-    loans = Loan.objects.all()
+    if not request.user.is_admin:
+        return redirect('dashboard')
+    loans = Loan.objects.all().order_by('-loan_date')
     return render(request, 'loans/manage_loans.html', {'loans': loans})
 
 
 def return_loan(request, loan_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     loan = get_object_or_404(Loan, id=loan_id, loan_status='Active')
 
     if request.method == 'POST':
@@ -101,3 +109,17 @@ def return_loan(request, loan_id):
         form = ReturnLoanForm()
 
     return render(request, 'loans/return_loan.html', {'form': form, 'loan': loan})
+
+@login_required
+def loan_history(request):
+    loans = Loan.objects.filter(user=request.user).order_by('-loan_date')
+    
+    status = request.GET.get('status')
+
+    if status:
+        loans = loans.filter(loan_status=status)
+    
+    return render(request, 'loans/loan_history.html', {
+        'loans': loans,
+        'status': status,
+    })

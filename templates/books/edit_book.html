@@ -17,7 +17,7 @@
             <form action="{% url 'buscar' %}" method="POST" class="search-form">
                 {% csrf_token %}
                 <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
-                <button type="submit">Buscar</button>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
         <nav>
@@ -33,65 +33,73 @@
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a>
-                </li>
+                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
                 <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
         <main>
             <section class="form-container">
-                <h2><i class="fas fa-plus-circle"></i> Editar Livro</h2>
+                <h2><i class="fas fa-edit"></i> Editar Livro</h2>
 
                 {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
-                    <p class="message {{ message.tags }}">{{ message }}</p>
+                    <p class="message {{ message.tags }}"><i class="fas fa-info-circle"></i> {{ message }}</p>
                     {% endfor %}
                 </div>
                 {% endif %}
 
-                <form action="{% url 'add_book' %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'edit_book' book.id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     {{ form.non_field_errors }}
 
                     <div class="form-group">
-                        {{ form.title.label_tag }} {{ form.title }}
+                        <label for="title"><i class="fas fa-book"></i> {{ form.title.label }}</label>
+                        {{ form.title }}
                         {{ form.title.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.author.label_tag }} {{ form.author }}
+                        <label for="author"><i class="fas fa-user"></i> {{ form.author.label }}</label>
+                        {{ form.author }}
                         {{ form.author.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.isbn.label_tag }} {{ form.isbn }}
+                        <label for="isbn"><i class="fas fa-barcode"></i> {{ form.isbn.label }}</label>
+                        {{ form.isbn }}
                         {{ form.isbn.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.publisher.label_tag }} {{ form.publisher }}
+                        <label for="publisher"><i class="fas fa-building"></i> {{ form.publisher.label }}</label>
+                        {{ form.publisher }}
                         {{ form.publisher.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.publish_year.label_tag }} {{ form.publish_year }}
+                        <label for="publish_year"><i class="fas fa-calendar-alt"></i> {{ form.publish_year.label }}</label>
+                        {{ form.publish_year }}
                         {{ form.publish_year.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.style.label_tag }} {{ form.style }}
+                        <label for="style"><i class="fas fa-list"></i> {{ form.style.label }}</label>
+                        {{ form.style }}
                         {{ form.style.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.quantity_total.label_tag }} {{ form.quantity_total }}
+                        <label for="quantity_total"><i class="fas fa-boxes"></i> {{ form.quantity_total.label }}</label>
+                        {{ form.quantity_total }}
                         {{ form.quantity_total.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.description.label_tag }} {{ form.description }}
+                        <label for="description"><i class="fas fa-align-left"></i> {{ form.description.label }}</label>
+                        {{ form.description }}
                         {{ form.description.errors }}
                     </div>
 
-                    <button type="submit" class="submit-btn"><i class="fas fa-plus-circle"></i> Editar Livro</button>
+                    <button type="submit" class="submit-btn"><i class="fas fa-save"></i> Salvar Alterações</button>
                 </form>
             </section>
         </main>
+    </section>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
             <form action="{% url 'buscar' %}" method="POST" class="search-form">
                 {% csrf_token %}
                 <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
-                <button type="submit">Buscar</button>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
         <nav>
@@ -33,8 +33,7 @@
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a>
-                </li>
+                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
                 <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
@@ -56,35 +55,43 @@
                     {{ form.non_field_errors }}
 
                     <div class="form-group">
-                        {{ form.title.label_tag }} {{ form.title }}
+                        <label><i class="fas fa-heading"></i> {{ form.title.label_tag }}</label>
+                        {{ form.title }}
                         {{ form.title.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.author.label_tag }} {{ form.author }}
+                        <label><i class="fas fa-user"></i> {{ form.author.label_tag }}</label>
+                        {{ form.author }}
                         {{ form.author.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.isbn.label_tag }} {{ form.isbn }}
+                        <label><i class="fas fa-barcode"></i> {{ form.isbn.label_tag }}</label>
+                        {{ form.isbn }}
                         {{ form.isbn.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.publisher.label_tag }} {{ form.publisher }}
+                        <label><i class="fas fa-building"></i> {{ form.publisher.label_tag }}</label>
+                        {{ form.publisher }}
                         {{ form.publisher.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.publish_year.label_tag }} {{ form.publish_year }}
+                        <label><i class="fas fa-calendar-alt"></i> {{ form.publish_year.label_tag }}</label>
+                        {{ form.publish_year }}
                         {{ form.publish_year.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.style.label_tag }} {{ form.style }}
+                        <label><i class="fas fa-bookmark"></i> {{ form.style.label_tag }}</label>
+                        {{ form.style }}
                         {{ form.style.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.quantity_total.label_tag }} {{ form.quantity_total }}
+                        <label><i class="fas fa-box"></i> {{ form.quantity_total.label_tag }}</label>
+                        {{ form.quantity_total }}
                         {{ form.quantity_total.errors }}
                     </div>
                     <div class="form-group">
-                        {{ form.description.label_tag }} {{ form.description }}
+                        <label><i class="fas fa-align-left"></i> {{ form.description.label_tag }}</label>
+                        {{ form.description }}
                         {{ form.description.errors }}
                     </div>
 
@@ -92,6 +99,7 @@
                 </form>
             </section>
         </main>
+    </section>
 </body>
 
 </html>

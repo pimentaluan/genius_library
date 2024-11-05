@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Empréstimos - Genius Library</title>
+    <link rel="stylesheet" href="{% static 'styles/loan_history.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        <div class="busca">
+            <form action="{% url 'buscar' %}" method="POST" class="search-form">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+            </form>
+        </div>
+        <nav>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </header>
+
+    <section class="conteiner">
+        <aside>
+            <ul>
+                <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{% url 'available_books' %}"><i class="fas fa-book"></i> Livros Disponíveis</a></li>
+                <li><a href="{% url 'loan_history' %}"><i class="fas fa-history"></i> Histórico de Empréstimos</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section class="history-filters">
+                <h2><i class="fas fa-filter"></i> Filtros</h2>
+                <form method="get" action="{% url 'loan_history' %}">
+                    <div class="form-group">
+                        <label for="status"><i class="fas fa-info-circle"></i> Status</label>
+                        <select id="status" name="status">
+                            <option value="">Todos</option>
+                            <option value="Active" {% if status == "Active" %}selected{% endif %}>Ativo</option>
+                            <option value="Returned" {% if status == "Returned" %}selected{% endif %}>Devolvido</option>
+                            <option value="Pending" {% if status == "Pending" %}selected{% endif %}>Pendente</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fas fa-search"></i> Filtrar</button>
+                </form>
+            </section>
+
+            <section class="loan-history">
+                <h2><i class="fas fa-book"></i> Histórico de Empréstimos</h2>
+                {% if loans %}
+                    <div class="loan-history-container">
+                        {% for loan in loans %}
+                        <div class="loan-card">
+                            <p><i class="fas fa-user"></i> <strong>Usuário:</strong> {{ loan.user.full_name }}</p>
+                            <p><i class="fas fa-book"></i> <strong>Livro:</strong> {{ loan.book.title }}</p>
+                            <p><i class="fas fa-calendar-alt"></i> <strong>Data de Empréstimo:</strong> {{ loan.loan_date|date:"d/m/Y" }}</p>
+                            <p><i class="fas fa-calendar-check"></i> <strong>Data de Devolução Prevista:</strong> {{ loan.expected_return_date|date:"d/m/Y"|default:"Não defenido" }}</p>
+                            <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> {{ loan.get_loan_status_display }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-result">Nenhum empréstimo encontrado para os filtros selecionados.</p>
+                {% endif %}
+            </section>
+        </main>
+    </section>
+</body>
+
+</html>

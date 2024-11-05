@@ -16,7 +16,6 @@ User = get_user_model()
 
 def register_user(request):
     if not request.user.is_admin:
-        messages.error(request, 'Apenas administradores podem acessar esta página')
         return redirect('dashboard')
     
     if request.method == 'POST':
@@ -102,6 +101,8 @@ def search(request):
         return redirect('dashboard')
     
 def users(request):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     user_type = request.GET.get('user_type')
     min_active_loans = request.GET.get('min_active_loans')
 
@@ -130,6 +131,8 @@ def users(request):
 
 @login_required
 def edit_user(request, user_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     user = get_object_or_404(User, id=user_id)
 
     if request.method == 'POST':
@@ -160,6 +163,8 @@ def edit_user(request, user_id):
     return render(request, 'users/edit_user.html', {'user': user})
 
 def delete_user(request, user_id):
+    if not request.user.is_admin:
+        return redirect('dashboard')
     user = get_object_or_404(User, id=user_id)
     print(user)
     user.delete()

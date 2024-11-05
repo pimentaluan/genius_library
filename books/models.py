@@ -15,6 +15,7 @@ class Book(models.Model):
     quantity_total = models.PositiveIntegerField()
     quantity_available = models.PositiveIntegerField()
     description = models.TextField(null=True, blank=True)
+    ativo = models.BooleanField(default=True)
 
     @property
     def is_available(self):
@@ -23,6 +24,10 @@ class Book(models.Model):
     @property
     def loans_self_count(self):
         return Loan.objects.filter(book=self).count()
+    
+    @property
+    def is_active(self):
+        return self.ativo
     
     def __str__(self):
         return self.title
