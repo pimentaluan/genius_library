@@ -1,7 +1,3 @@
-O seu README está bem claro e informativo. Vou sugerir algumas pequenas melhorias para deixar o documento mais padronizado e corrigir pequenos erros de digitação. 
-
----
-
 # Genius Library 📚
 
 Este projeto é um sistema de controle de empréstimos de livros desenvolvido em Django. Ele permite que administradores gerenciem o acervo de livros e os empréstimos, enquanto os leitores podem solicitar empréstimos e acompanhar seu histórico.
