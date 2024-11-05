@@ -53,6 +53,7 @@
                     {% for loan in loans_active %}
                     <div class="user-card">
                         <div class="user-info">
+                            <p><i class="fas fa-user"></i> <strong>Usuário:</strong> {{ loan.user }}</p>
                             <p><i class="fas fa-book"></i> <strong>Livro:</strong> {{ loan.book }}</p>
                             <p><i class="fas fa-calendar-alt"></i> <strong>Data de Empréstimo:</strong> {{ loan.loan_date }}</p>
                             <p><i class="fas fa-calendar-check"></i> <strong>Data Prevista de Devolução:</strong> {{ loan.expected_return_date }}</p>
@@ -76,6 +77,7 @@
                     {% for loan in loans_inactive %}
                     <div class="user-card">
                         <div class="user-info">
+                            <p><i class="fas fa-user"></i> <strong>Usuário:</strong> {{ loan.user }}</p>
                             <p><i class="fas fa-book"></i> <strong>Livro:</strong> {{ loan.book }}</p>
                             <p><i class="fas fa-calendar-alt"></i> <strong>Data de Empréstimo:</strong> {{ loan.loan_date }}</p>
                             <p><i class="fas fa-calendar-check"></i> <strong>Data Prevista de Devolução:</strong> {{ loan.expected_return_date }}</p>

@@ -26,6 +26,10 @@ class Book(models.Model):
         return Loan.objects.filter(book=self).count()
     
     @property
+    def loans_active_count(self):
+        return Loan.objects.filter(book=self, loan_status='Active').count()
+    
+    @property
     def is_active(self):
         return self.ativo
     

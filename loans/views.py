@@ -5,10 +5,11 @@ from .models import Loan
 from books.models import Book
 from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def register_loan(request):
     if not request.user.is_admin:
         return redirect('dashboard')
+    
     if request.method == 'POST' and 'register_loan' in request.POST:
         form = LoanForm(request.POST)
         if form.is_valid():
@@ -16,25 +17,25 @@ def register_loan(request):
             book = get_object_or_404(Book, id=form.cleaned_data['book'].id)
             
             if book.quantity_available > 0:
+                book.quantity_available -= 1
+                book.save()  # Salva a atualização do livro
                 loan.save()
                 messages.success(request, "Empréstimo registrado com sucesso.")
                 return redirect('register_loan')
             else:
                 messages.error(request, "O livro selecionado não está disponível para empréstimo.")
         else:
-            print(form.errors) 
             messages.error(request, "Erro ao registrar empréstimo. Verifique os dados e tente novamente.")
-
 
     elif request.method == 'POST' and 'approve_loan' in request.POST:
         loan_id = request.POST.get('loan_id')
         loan = get_object_or_404(Loan, id=loan_id, loan_status='Pending')
+        
         if loan.book.quantity_available > 0:
             loan.loan_status = 'Active'
-            loan.save()
-
             loan.book.quantity_available -= 1
             loan.book.save()
+            loan.save()
 
             messages.success(request, "Empréstimo aprovado com sucesso!")
         else:
@@ -51,7 +52,8 @@ def register_loan(request):
         'pending_loans': pending_loans,
     })
 
-    
+
+@login_required   
 def request_loan(request):
     loans = Loan.objects.filter(user=request.user)
 
@@ -75,12 +77,14 @@ def request_loan(request):
         'loans': loans,
         'form': form,
     })
-    
+
+@login_required
 def manage_loans(request):
     if not request.user.is_admin:
         return redirect('dashboard')
+    
     loans_active = Loan.objects.filter(loan_status='Active')
-    loans_inactive = Loan.objects.exclude(loan_status='Active')
+    loans_inactive = Loan.objects.filter(loan_status__in=['Pending', 'Returned'])
     
     context = {
         'loans_active': loans_active,
@@ -89,6 +93,7 @@ def manage_loans(request):
     return render(request, 'loans/manage_loans.html', context)
 
 
+@login_required
 def return_loan(request, loan_id):
     if not request.user.is_admin:
         return redirect('dashboard')

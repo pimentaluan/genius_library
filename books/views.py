@@ -22,6 +22,7 @@ def add_book(request):
         form = BookForm()
     return render(request, 'books/add_book.html', {'form': form})
 
+@login_required
 def manage_books(request):
     if not request.user.is_admin:
         return redirect('dashboard')
@@ -38,6 +39,7 @@ def manage_books(request):
         
     return render(request, 'books/manage_books.html', {'books': books})
 
+@login_required
 def edit_book(request, book_id):
     if not request.user.is_admin:
         return redirect('dashboard')
@@ -56,6 +58,7 @@ def edit_book(request, book_id):
         form = BookForm(instance=book)
     return render(request, 'books/edit_book.html', {'form': form, 'book': book})
 
+@login_required
 def delete_book(request, book_id):
     if not request.user.is_admin:
         return redirect('dashboard')
@@ -65,6 +68,7 @@ def delete_book(request, book_id):
     messages.success(request, "Livro deletado com sucesso!")
     return redirect('manage_books')
 
+@login_required
 def desactivate_book(request, book_id):
     if not request.user.is_admin:
         return redirect('dashboard')
@@ -75,6 +79,7 @@ def desactivate_book(request, book_id):
     messages.success(request, "Livro desativado com sucesso!")
     return redirect('manage_books')
 
+@login_required
 def activate_book(request, book_id):
     if not request.user.is_admin:
         return redirect('dashboard')
@@ -85,6 +90,7 @@ def activate_book(request, book_id):
     messages.success(request, "Livro ativado com sucesso!")
     return redirect('manage_books')
 
+@login_required
 def available_books(request):
     book_style = request.GET.get('book_style')
     quantity_available = request.GET.get('quantity_available')

@@ -74,7 +74,7 @@
                             <p><i class="fas fa-calendar-alt"></i> <strong>Ano de publicação:</strong> {{ book.publish_year }}</p>
                             <p><i class="fas fa-boxes"></i> <strong>Quantidade total:</strong> {{ book.quantity_total }}</p>
                             <p><i class="fas fa-box"></i> <strong>Quantidade disponível:</strong> {{ book.quantity_available }}</p>
-                            <p><i class="fas fa-handshake"></i> <strong>Empréstimos ativos:</strong> {{ book.loans_self_count }}</p>
+                            <p><i class="fas fa-handshake"></i> <strong>Empréstimos ativos:</strong> {{ book.loans_active_count }}</p>
                             {% if book.description %}
                             <p><i class="fas fa-align-left"></i> <strong>Descrição:</strong> {{ book.description }}</p>
                             {% endif %}

@@ -1,0 +1,163 @@
+[
+    {
+      "model": "books.book",
+      "pk": 1,
+      "fields": {
+        "title": "O Grande Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "isbn": "1234567890123",
+        "publisher": "Scribner",
+        "publish_year": 1925,
+        "style": "Fiction",
+        "quantity_total": 10,
+        "quantity_available": 10,
+        "description": "Um romance ambientado na Era do Jazz que conta a história do amor não correspondido de Jay Gatsby por Daisy Buchanan.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 2,
+      "fields": {
+        "title": "Uma Breve História do Tempo",
+        "author": "Stephen Hawking",
+        "isbn": "1234567890124",
+        "publisher": "Bantam",
+        "publish_year": 1988,
+        "style": "Science",
+        "quantity_total": 20,
+        "quantity_available": 20,
+        "description": "Um livro de divulgação científica sobre cosmologia escrito por Stephen Hawking.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 3,
+      "fields": {
+        "title": "O Sol é para Todos",
+        "author": "Harper Lee",
+        "isbn": "1234567890125",
+        "publisher": "J.B. Lippincott & Co.",
+        "publish_year": 1960,
+        "style": "Fiction",
+        "quantity_total": 25,
+        "quantity_available": 25,
+        "description": "Um romance sobre injustiça racial no sul dos Estados Unidos.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 4,
+      "fields": {
+        "title": "O Iluminado",
+        "author": "Stephen King",
+        "isbn": "1234567890126",
+        "publisher": "Doubleday",
+        "publish_year": 1977,
+        "style": "Horror",
+        "quantity_total": 12,
+        "quantity_available": 12,
+        "description": "Um romance de terror sobre a estadia de uma família em um hotel isolado.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 5,
+      "fields": {
+        "title": "O Diário de Anne Frank",
+        "author": "Anne Frank",
+        "isbn": "1234567890127",
+        "publisher": "Contact Publishing",
+        "publish_year": 1947,
+        "style": "Biography",
+        "quantity_total": 20,
+        "quantity_available": 20,
+        "description": "O diário de guerra de Anne Frank.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 6,
+      "fields": {
+        "title": "1984",
+        "author": "George Orwell",
+        "isbn": "1234567890128",
+        "publisher": "Secker & Warburg",
+        "publish_year": 1949,
+        "style": "Fiction",
+        "quantity_total": 15,
+        "quantity_available": 15,
+        "description": "Um romance distópico sobre um regime totalitário e a vigilância extrema.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 7,
+      "fields": {
+        "title": "Dom Quixote",
+        "author": "Miguel de Cervantes",
+        "isbn": "1234567890129",
+        "publisher": "Francisco de Robles",
+        "publish_year": 1605,
+        "style": "Fiction",
+        "quantity_total": 10,
+        "quantity_available": 10,
+        "description": "Uma história sobre o cavaleiro Dom Quixote e suas aventuras absurdas.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 8,
+      "fields": {
+        "title": "A Origem das Espécies",
+        "author": "Charles Darwin",
+        "isbn": "1234567890130",
+        "publisher": "John Murray",
+        "publish_year": 1859,
+        "style": "Science",
+        "quantity_total": 18,
+        "quantity_available": 18,
+        "description": "O livro que introduziu a teoria da evolução por seleção natural.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 9,
+      "fields": {
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "isbn": "1234567890131",
+        "publisher": "Lackington, Hughes, Harding, Mavor & Jones",
+        "publish_year": 1818,
+        "style": "Horror",
+        "quantity_total": 14,
+        "quantity_available": 14,
+        "description": "A história de um cientista que cria um ser vivo em um experimento.",
+        "ativo": true
+      }
+    },
+    {
+      "model": "books.book",
+      "pk": 10,
+      "fields": {
+        "title": "A Divina Comédia",
+        "author": "Dante Alighieri",
+        "isbn": "1234567890132",
+        "publisher": "Johann Numeister",
+        "publish_year": 1320,
+        "style": "Fiction",
+        "quantity_total": 11,
+        "quantity_available": 11,
+        "description": "Uma viagem épica pelo Inferno, Purgatório e Paraíso.",
+        "ativo": true
+      }
+    }
+  ]
+  
