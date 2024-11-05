@@ -20,10 +20,15 @@
                 <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav>
             <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </header>
+    
+    <div class="overlay" onclick="closeMenu()"></div>
 
     <section class="conteiner">
         <aside>
@@ -73,8 +78,6 @@
             </section>
         </main>
     </section>
-
-    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="{% static 'js/menu.js' %}"></script>
 </body>
-
 </html>

@@ -79,8 +79,14 @@ def request_loan(request):
 def manage_loans(request):
     if not request.user.is_admin:
         return redirect('dashboard')
-    loans = Loan.objects.all().order_by('-loan_date')
-    return render(request, 'loans/manage_loans.html', {'loans': loans})
+    loans_active = Loan.objects.filter(loan_status='Active')
+    loans_inactive = Loan.objects.exclude(loan_status='Active')
+    
+    context = {
+        'loans_active': loans_active,
+        'loans_inactive': loans_inactive,
+    }
+    return render(request, 'loans/manage_loans.html', context)
 
 
 def return_loan(request, loan_id):

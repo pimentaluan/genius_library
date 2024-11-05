@@ -20,16 +20,21 @@
                 <button type="submit"><i class="fas fa-search"></i> Buscar</button>
             </form>
         </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
         <nav>
             <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </header>
 
+    <div class="overlay" onclick="closeMenu()"></div>
+
     <section class="conteiner">
         <aside>
             <ul>
                 <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href=""><i class="fas fa-book"></i> Livros Disponíveis</a></li>
+                <li><a href="{% url 'available_books' %}"><i class="fas fa-book"></i> Livros Disponíveis</a></li>
                 <li><a href="{% url 'loan_history' %}"><i class="fas fa-history"></i> Histórico de Empréstimos</a></li>
             </ul>
         </aside>
@@ -71,6 +76,8 @@
             </section>
         </main>
     </section>
+
+    <script src="{% static 'js/menu.js' %}"></script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ class Loan(models.Model):
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
     book = models.ForeignKey('books.Book', on_delete=models.CASCADE)
     loan_date = models.DateField(default=timezone.now)
-    expected_return_date = models.DateField(null=True, blank=True)
+    expected_return_date = models.DateField()
     loan_status = models.CharField(
         max_length=20, 
         default='Active',

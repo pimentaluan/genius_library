@@ -12,19 +12,28 @@
 
 <body>
     <header>
-        <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        <div class="header-top">
+            <img src="{% static 'img/logo.png' %}" alt="Genius Library Logo" class="logo">
+        </div>
+        
         <div class="busca">
             <form action="{% url 'buscar' %}" method="POST" class="search-form">
                 {% csrf_token %}
                 <input type="text" name="query" placeholder="Buscar usuários, livros, empréstimos..." required>
-                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+                <button type="submit">Buscar</button>
             </form>
+        </div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
         <nav>
             <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </header>
 
+    <div class="overlay" onclick="closeMenu()"></div>
+    
     <section class="conteiner">
         <aside>
             <ul>
@@ -33,10 +42,12 @@
                 <li><a href="{% url 'users' %}"><i class="fas fa-users-cog"></i> Gerenciar Usuários</a></li>
                 <li><a href="{% url 'add_book' %}"><i class="fas fa-book"></i> Adicionar Livro</a></li>
                 <li><a href="{% url 'manage_books' %}"><i class="fas fa-book-reader"></i> Gerenciar Livros</a></li>
-                <li><a href="{% url 'register_loan' %}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'register_loan'%}"><i class="fas fa-handshake"></i> Registrar/Aprovar Empréstimo</a></li>
+                <li><a href="{% url 'manage_loans' %}"><i class="fas fa-undo"></i> Gerenciar/Devolver Empréstimos</a></li>
                 <li><a href="{% url 'report' %}"><i class="fas fa-chart-line"></i> Relatórios</a></li>
             </ul>
         </aside>
+        
         <main>
             <section class="form-container">
                 <h2><i class="fas fa-plus-circle"></i> Adicionar Livro</h2>
@@ -100,6 +111,6 @@
             </section>
         </main>
     </section>
+    <script src="{% static 'js/menu.js' %}"></script>
 </body>
-
 </html>

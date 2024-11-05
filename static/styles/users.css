@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -13,17 +14,16 @@ body {
     flex-direction: column;
 }
 
+/* Cabeçalho */
 header {
     background-color: #2A6DB8;
     color: white;
     padding: 20px;
-    text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 120px;
-    /* Altura aumentada */
 }
 
 header .logo {
@@ -37,6 +37,14 @@ header nav a {
     font-weight: bold;
 }
 
+.menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+}
+
+/* Barra de busca */
 .search-form {
     display: flex;
     align-items: center;
@@ -49,7 +57,6 @@ header nav a {
     border: 1px solid #ccc;
     font-size: 1em;
     width: 500px;
-
 }
 
 .search-form button {
@@ -64,9 +71,10 @@ header nav a {
 }
 
 .search-form button:hover {
-    background-color: #001825;
+    background-color: #004080;
 }
 
+/* Estrutura principal */
 .conteiner {
     display: flex;
     flex-direction: row;
@@ -80,6 +88,7 @@ aside {
     padding: 20px;
     position: sticky;
     min-height: 100vh;
+    transition: transform 0.3s ease;
 }
 
 aside ul {
@@ -122,8 +131,10 @@ main {
     width: calc(100% - 220px);
 }
 
+/* Resultados de Busca */
 #search-results {
     background-color: #f4f6f8;
+    padding: 20px;
 }
 
 .search-section {
@@ -161,6 +172,7 @@ main {
     margin: 5px 0;
 }
 
+/* Lista de usuários */
 .user-list {
     display: grid;
     gap: 20px;
@@ -189,7 +201,7 @@ main {
     font-weight: bold;
 }
 
-
+/* Botões de Ações do Usuário */
 .user-actions {
     margin-top: 10px;
     display: flex;
@@ -239,6 +251,7 @@ main {
     background-color: #c0392b;
 }
 
+/* Formulário de Filtro */
 .filter-form {
     display: flex;
     align-items: center;
@@ -277,8 +290,104 @@ main {
     background-color: #1e4a7b;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        height: auto;
+    }
+
+    .logo {
+        margin-left: 0!important;
+        margin-bottom: 10px;
+    }
+
+    .search-form {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+        align-self: center;
+        padding: 10px;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 900;
+    }
+
+    aside.active + .overlay,
+    .overlay.active {
+        display: block;
+    }
+
+    aside {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    aside.active {
+        transform: translateX(0);
+    }
+
+    main {
+        width: 100%;
+    }
+
     .user-list {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-form {
+        gap: 5px;
+    }
+
+    .search-form input[type="text"] {
+        width: 100%;
+    }
+
+    .search-form button {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    header nav a {
+        font-size: 0.9em;
+    }
+
+    aside ul li a {
+        font-size: 1em;
+    }
+
+    .user-card {
+        padding: 15px;
+    }
+
+    .filter-form {
+        flex-direction: column;
+    }
+
+    .filter-form select,
+    .filter-form input,
+    .filter-form button {
+        width: 100%;
     }
 }

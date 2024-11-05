@@ -27,11 +27,10 @@ body {
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
     margin-bottom: 1.5rem;
     transition: transform 0.3s ease;
 }
-
 
 .messages {
     width: 100%;
@@ -61,6 +60,13 @@ form {
     width: 100%;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
 input{
     width: 100%;
     padding: 0.8rem;
@@ -79,7 +85,6 @@ input:focus {
 input::placeholder{
     color: #aaa;
 }
-
 button {
     background-color: #2A6DB8;
     color: #fff;
@@ -120,4 +125,51 @@ button:hover {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .div_logo {
+        width: 100%;
+        padding: 0;
+        align-items: center;
+    }
+
+    .logo {
+        width: 150px;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    form {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .div_background {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    input {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
 }

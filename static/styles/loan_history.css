@@ -17,7 +17,6 @@ header {
     background-color: #2A6DB8;
     color: white;
     padding: 20px;
-    text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,6 +33,10 @@ header nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+.menu-toggle {
+    display: none;
 }
 
 .search-form {
@@ -62,7 +65,7 @@ header nav a {
 }
 
 .search-form button:hover {
-    background-color: #1E5E9B;
+    background-color: #004080;
 }
 
 .conteiner {
@@ -76,8 +79,9 @@ aside {
     background-color: #001825;
     color: white;
     padding: 20px;
-    min-height: 100vh;
     position: sticky;
+    min-height: 100vh;
+    transition: transform 0.3s ease;
 }
 
 aside ul {
@@ -119,6 +123,7 @@ main {
     padding: 20px;
     width: calc(100% - 220px);
 }
+
 
 .history-filters {
     background-color: #ffffff;
@@ -228,4 +233,103 @@ main {
     color: #888;
     font-style: italic;
     margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        height: auto;
+        align-items: center;
+    }
+
+    .logo {
+        margin-left: 0!important;
+        margin-bottom: 10px;
+    }
+
+    .search-form {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+        color: white;
+        padding: 10px;
+        font-size: 1.5em;
+        align-self: center;
+        text-align: center;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 900;
+    }
+
+    aside.active + .overlay,
+    .overlay.active {
+        display: block;
+    }
+
+    aside {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    aside.active {
+        transform: translateX(0);
+    }
+
+    main {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .search-form {
+        gap: 5px;
+    }
+
+    .search-form input[type="text"] {
+        width: 100%;
+    }
+
+    .search-form button {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    header nav a {
+        font-size: 0.9em;
+    }
+
+    aside ul li a {
+        font-size: 1em;
+    }
+
+    .form-container {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .submit-btn {
+        font-size: 1em;
+        padding: 10px;
+    }
 }
