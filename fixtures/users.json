@@ -5,11 +5,11 @@
     "fields": {
       "username": "admin",
       "full_name": "Administrador",
-      "email": "engeselt@email.com",
+      "email": "genius@email.com",
       "is_superuser": true,
       "is_staff": true,
       "user_type": "Admin",
-      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+      "password": "pbkdf2_sha256$870000$sNHa9LHVe5DDjC9wPzn4mX$0Hp66q+LeayVkdcVFq1oVAo0ce+inH6X35kh1nwdXXc="
     }
   },
   {
@@ -22,7 +22,7 @@
       "user_type": "Reader",
       "address": "Rua A, 123",
       "phone": "1234567890",
-      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+      "password": "pbkdf2_sha256$870000$sNHa9LHVe5DDjC9wPzn4mX$0Hp66q+LeayVkdcVFq1oVAo0ce+inH6X35kh1nwdXXc="
     }
   },
   {
@@ -35,7 +35,7 @@
       "user_type": "Reader",
       "address": "Rua B, 456",
       "phone": "0987654321",
-      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+      "password": "pbkdf2_sha256$870000$sNHa9LHVe5DDjC9wPzn4mX$0Hp66q+LeayVkdcVFq1oVAo0ce+inH6X35kh1nwdXXc="
     }
   },
   {
@@ -48,7 +48,7 @@
       "user_type": "Reader",
       "address": "Rua C, 789",
       "phone": "1122334455",
-      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+      "password": "pbkdf2_sha256$870000$sNHa9LHVe5DDjC9wPzn4mX$0Hp66q+LeayVkdcVFq1oVAo0ce+inH6X35kh1nwdXXc="
     }
   },
   {
@@ -61,7 +61,7 @@
       "user_type": "Reader",
       "address": "Rua D, 101",
       "phone": "5566778899",
-      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+      "password": "pbkdf2_sha256$870000$sNHa9LHVe5DDjC9wPzn4mX$0Hp66q+LeayVkdcVFq1oVAo0ce+inH6X35kh1nwdXXc="
     }
   },
   {
@@ -74,7 +74,7 @@
       "user_type": "Reader",
       "address": "Rua E, 202",
       "phone": "6677889900",
-      "password": "pbkdf2_sha256$870000$4j8XPty1hnmjt4lBN6jDlf$yQDkig6JphbBcceAFQP/qerUdo9vK9XUc7wHeHyNRK4="
+      "password": "pbkdf2_sha256$870000$sNHa9LHVe5DDjC9wPzn4mX$0Hp66q+LeayVkdcVFq1oVAo0ce+inH6X35kh1nwdXXc="
     }
   }
 ]

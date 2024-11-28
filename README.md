@@ -92,11 +92,11 @@ Acesse o sistema em [http://localhost:8000](http://localhost:8000).
 
 Após o superusuário e outros usuários serem configurados, use as credenciais para fazer login e acessar o painel principal.
 
-- **Email do Administrador**: `engeselt@email.com`
-- **Senha do Administrador**: `Engeselt123@`
+- **Email do Administrador**: `genius@email.com`
+- **Senha do Administrador**: `genius123@`
 
 - **Emails dos Leitores**: leitor1@email.com, leitor2@email.com, etc.
-- **Senha para leitores**: Engeselt123@
+- **Senha para leitores**: genius123@
 
 ### 2. Administrador
 - Acesse o painel de administração para gerenciar livros, empréstimos e devoluções.

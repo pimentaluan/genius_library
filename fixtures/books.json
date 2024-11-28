@@ -1,163 +1,355 @@
 [
-    {
-      "model": "books.book",
-      "pk": 1,
-      "fields": {
-        "title": "O Grande Gatsby",
-        "author": "F. Scott Fitzgerald",
-        "isbn": "1234567890123",
-        "publisher": "Scribner",
-        "publish_year": 1925,
-        "style": "Fiction",
-        "quantity_total": 10,
-        "quantity_available": 10,
-        "description": "Um romance ambientado na Era do Jazz que conta a história do amor não correspondido de Jay Gatsby por Daisy Buchanan.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 2,
-      "fields": {
-        "title": "Uma Breve História do Tempo",
-        "author": "Stephen Hawking",
-        "isbn": "1234567890124",
-        "publisher": "Bantam",
-        "publish_year": 1988,
-        "style": "Science",
-        "quantity_total": 20,
-        "quantity_available": 20,
-        "description": "Um livro de divulgação científica sobre cosmologia escrito por Stephen Hawking.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 3,
-      "fields": {
-        "title": "O Sol é para Todos",
-        "author": "Harper Lee",
-        "isbn": "1234567890125",
-        "publisher": "J.B. Lippincott & Co.",
-        "publish_year": 1960,
-        "style": "Fiction",
-        "quantity_total": 25,
-        "quantity_available": 25,
-        "description": "Um romance sobre injustiça racial no sul dos Estados Unidos.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 4,
-      "fields": {
-        "title": "O Iluminado",
-        "author": "Stephen King",
-        "isbn": "1234567890126",
-        "publisher": "Doubleday",
-        "publish_year": 1977,
-        "style": "Horror",
-        "quantity_total": 12,
-        "quantity_available": 12,
-        "description": "Um romance de terror sobre a estadia de uma família em um hotel isolado.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 5,
-      "fields": {
-        "title": "O Diário de Anne Frank",
-        "author": "Anne Frank",
-        "isbn": "1234567890127",
-        "publisher": "Contact Publishing",
-        "publish_year": 1947,
-        "style": "Biography",
-        "quantity_total": 20,
-        "quantity_available": 20,
-        "description": "O diário de guerra de Anne Frank.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 6,
-      "fields": {
-        "title": "1984",
-        "author": "George Orwell",
-        "isbn": "1234567890128",
-        "publisher": "Secker & Warburg",
-        "publish_year": 1949,
-        "style": "Fiction",
-        "quantity_total": 15,
-        "quantity_available": 15,
-        "description": "Um romance distópico sobre um regime totalitário e a vigilância extrema.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 7,
-      "fields": {
-        "title": "Dom Quixote",
-        "author": "Miguel de Cervantes",
-        "isbn": "1234567890129",
-        "publisher": "Francisco de Robles",
-        "publish_year": 1605,
-        "style": "Fiction",
-        "quantity_total": 10,
-        "quantity_available": 10,
-        "description": "Uma história sobre o cavaleiro Dom Quixote e suas aventuras absurdas.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 8,
-      "fields": {
-        "title": "A Origem das Espécies",
-        "author": "Charles Darwin",
-        "isbn": "1234567890130",
-        "publisher": "John Murray",
-        "publish_year": 1859,
-        "style": "Science",
-        "quantity_total": 18,
-        "quantity_available": 18,
-        "description": "O livro que introduziu a teoria da evolução por seleção natural.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 9,
-      "fields": {
-        "title": "Frankenstein",
-        "author": "Mary Shelley",
-        "isbn": "1234567890131",
-        "publisher": "Lackington, Hughes, Harding, Mavor & Jones",
-        "publish_year": 1818,
-        "style": "Horror",
-        "quantity_total": 14,
-        "quantity_available": 14,
-        "description": "A história de um cientista que cria um ser vivo em um experimento.",
-        "ativo": true
-      }
-    },
-    {
-      "model": "books.book",
-      "pk": 10,
-      "fields": {
-        "title": "A Divina Comédia",
-        "author": "Dante Alighieri",
-        "isbn": "1234567890132",
-        "publisher": "Johann Numeister",
-        "publish_year": 1320,
-        "style": "Fiction",
-        "quantity_total": 11,
-        "quantity_available": 11,
-        "description": "Uma viagem épica pelo Inferno, Purgatório e Paraíso.",
-        "ativo": true
-      }
+  {
+    "model": "books.book",
+    "pk": 1,
+    "fields": {
+      "title": "O Grande Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "isbn": "1234567890123",
+      "publisher": "Scribner",
+      "publish_year": 1925,
+      "style": "Fiction",
+      "quantity_total": 10,
+      "quantity_available": 10,
+      "description": "Um romance ambientado na Era do Jazz que conta a história do amor não correspondido de Jay Gatsby por Daisy Buchanan.",
+      "ativo": true
     }
-  ]
+  },
+  {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "title": "Uma Breve História do Tempo",
+      "author": "Stephen Hawking",
+      "isbn": "1234567890124",
+      "publisher": "Bantam",
+      "publish_year": 1988,
+      "style": "Science",
+      "quantity_total": 20,
+      "quantity_available": 20,
+      "description": "Um livro de divulgação científica sobre cosmologia escrito por Stephen Hawking.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "title": "O Sol é para Todos",
+      "author": "Harper Lee",
+      "isbn": "1234567890125",
+      "publisher": "J.B. Lippincott & Co.",
+      "publish_year": 1960,
+      "style": "Fiction",
+      "quantity_total": 25,
+      "quantity_available": 25,
+      "description": "Um romance sobre injustiça racial no sul dos Estados Unidos.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+      "title": "O Iluminado",
+      "author": "Stephen King",
+      "isbn": "1234567890126",
+      "publisher": "Doubleday",
+      "publish_year": 1977,
+      "style": "Horror",
+      "quantity_total": 12,
+      "quantity_available": 12,
+      "description": "Um romance de terror sobre a estadia de uma família em um hotel isolado.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 5,
+    "fields": {
+      "title": "O Diário de Anne Frank",
+      "author": "Anne Frank",
+      "isbn": "1234567890127",
+      "publisher": "Contact Publishing",
+      "publish_year": 1947,
+      "style": "Biography",
+      "quantity_total": 20,
+      "quantity_available": 20,
+      "description": "O diário de guerra de Anne Frank.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 6,
+    "fields": {
+      "title": "1984",
+      "author": "George Orwell",
+      "isbn": "1234567890128",
+      "publisher": "Secker & Warburg",
+      "publish_year": 1949,
+      "style": "Fiction",
+      "quantity_total": 15,
+      "quantity_available": 15,
+      "description": "Um romance distópico sobre um regime totalitário e a vigilância extrema.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 7,
+    "fields": {
+      "title": "Dom Quixote",
+      "author": "Miguel de Cervantes",
+      "isbn": "1234567890129",
+      "publisher": "Francisco de Robles",
+      "publish_year": 1605,
+      "style": "Fiction",
+      "quantity_total": 10,
+      "quantity_available": 10,
+      "description": "Uma história sobre o cavaleiro Dom Quixote e suas aventuras absurdas.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 8,
+    "fields": {
+      "title": "A Origem das Espécies",
+      "author": "Charles Darwin",
+      "isbn": "1234567890130",
+      "publisher": "John Murray",
+      "publish_year": 1859,
+      "style": "Science",
+      "quantity_total": 18,
+      "quantity_available": 18,
+      "description": "O livro que introduziu a teoria da evolução por seleção natural.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 9,
+    "fields": {
+      "title": "Frankenstein",
+      "author": "Mary Shelley",
+      "isbn": "1234567890131",
+      "publisher": "Lackington, Hughes, Harding, Mavor & Jones",
+      "publish_year": 1818,
+      "style": "Horror",
+      "quantity_total": 14,
+      "quantity_available": 14,
+      "description": "A história de um cientista que cria um ser vivo em um experimento.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 10,
+    "fields": {
+      "title": "A Divina Comédia",
+      "author": "Dante Alighieri",
+      "isbn": "1234567890132",
+      "publisher": "Johann Numeister",
+      "publish_year": 1320,
+      "style": "Fiction",
+      "quantity_total": 11,
+      "quantity_available": 11,
+      "description": "Uma viagem épica pelo Inferno, Purgatório e Paraíso.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 11,
+    "fields": {
+      "title": "Dom Casmurro",
+      "author": "Machado de Assis",
+      "isbn": "1234567890133",
+      "publisher": "Livraria Garnier",
+      "publish_year": 1899,
+      "style": "Romance",
+      "quantity_total": 20,
+      "quantity_available": 20,
+      "description": "Um dos romances mais célebres de Machado de Assis, narrado por Bentinho sobre o seu amor por Capitu.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 12,
+    "fields": {
+      "title": "Memórias Póstumas de Brás Cubas",
+      "author": "Machado de Assis",
+      "isbn": "1234567890134",
+      "publisher": "Revista Brasileira",
+      "publish_year": 1881,
+      "style": "Romance",
+      "quantity_total": 15,
+      "quantity_available": 15,
+      "description": "Um romance narrado por um defunto, apresentando reflexões irônicas e filosóficas sobre a vida.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 13,
+    "fields": {
+      "title": "O Guarani",
+      "author": "José de Alencar",
+      "isbn": "1234567890135",
+      "publisher": "B.L. Garnier",
+      "publish_year": 1857,
+      "style": "Romance",
+      "quantity_total": 12,
+      "quantity_available": 12,
+      "description": "Um romance indianista que narra a história de Peri, um índio heroico e nobre.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 14,
+    "fields": {
+      "title": "Iracema",
+      "author": "José de Alencar",
+      "isbn": "1234567890136",
+      "publisher": "B.L. Garnier",
+      "publish_year": 1865,
+      "style": "Romance",
+      "quantity_total": 10,
+      "quantity_available": 10,
+      "description": "A história de amor entre Iracema, uma índia tabajara, e Martim, um colonizador português.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 15,
+    "fields": {
+      "title": "Vidas Secas",
+      "author": "Graciliano Ramos",
+      "isbn": "1234567890137",
+      "publisher": "José Olympio",
+      "publish_year": 1938,
+      "style": "Romance",
+      "quantity_total": 18,
+      "quantity_available": 18,
+      "description": "Um romance que retrata a vida árdua de uma família sertaneja em meio à seca.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 16,
+    "fields": {
+      "title": "Harry Potter e a Pedra Filosofal",
+      "author": "J.K. Rowling",
+      "isbn": "1234567890139",
+      "publisher": "Bloomsbury",
+      "publish_year": 1997,
+      "style": "Fiction",
+      "quantity_total": 30,
+      "quantity_available": 30,
+      "description": "O primeiro livro da série Harry Potter, apresentando o jovem bruxo e suas aventuras em Hogwarts.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 17,
+    "fields": {
+      "title": "Harry Potter e a Câmara Secreta",
+      "author": "J.K. Rowling",
+      "isbn": "1234567890140",
+      "publisher": "Bloomsbury",
+      "publish_year": 1998,
+      "style": "Fiction",
+      "quantity_total": 30,
+      "quantity_available": 30,
+      "description": "O segundo livro da série Harry Potter, com mais mistérios em Hogwarts.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 18,
+    "fields": {
+      "title": "Homem-Aranha: De Volta ao Lar",
+      "author": "Stan Lee",
+      "isbn": "1234567890141",
+      "publisher": "Marvel Comics",
+      "publish_year": 2017,
+      "style": "Romance",
+      "quantity_total": 20,
+      "quantity_available": 20,
+      "description": "História Marvel clássica",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 19,
+    "fields": {
+      "title": "Star Wars: Herdeiro do Império",
+      "author": "Timothy Zahn",
+      "isbn": "1234567890142",
+      "publisher": "Del Rey",
+      "publish_year": 1991,
+      "style": "Science",
+      "quantity_total": 20,
+      "quantity_available": 20,
+      "description": "Um clássico do universo expandido de Star Wars, narrando eventos após O Retorno de Jedi.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 20,
+    "fields": {
+      "title": "A Bela e a Fera",
+      "author": "Disney",
+      "isbn": "1234567890143",
+      "publisher": "Disney",
+      "publish_year": 1991,
+      "style": "Fiction",
+      "quantity_total": 15,
+      "quantity_available": 15,
+      "description": "A história encantadora da Bela e sua jornada de amor e descoberta com a Fera.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 21,
+    "fields": {
+      "title": "Toy Story: Amigos para Sempre",
+      "author": "Pixar",
+      "isbn": "1234567890144",
+      "publisher": "Disney Pixar",
+      "publish_year": 1995,
+      "style": "Fiction",
+      "quantity_total": 10,
+      "quantity_available": 10,
+      "description": "Uma história baseada no amado filme Toy Story.",
+      "ativo": true
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 22,
+    "fields": {
+      "title": "Os Vingadores: A Queda",
+      "author": "Brian Michael Bendis",
+      "isbn": "1234567890145",
+      "publisher": "Marvel Comics",
+      "publish_year": 2004,
+      "style": "Fiction",
+      "quantity_total": 20,
+      "quantity_available": 20,
+      "description": "Uma das sagas mais emocionantes dos Vingadores, mostrando a queda do grupo de heróis.",
+      "ativo": true
+    }
+  }
+]
   
